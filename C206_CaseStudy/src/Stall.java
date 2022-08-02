@@ -10,6 +10,7 @@ public class Stall {
 	private String Category;
 	private String OperatorStall;
 	
+	//Constructor
 	public Stall(int id, String name, Date startOperatingDate, Time operatingTime, String category, String operatorStall) {
 		super();
 		this.id = id;
