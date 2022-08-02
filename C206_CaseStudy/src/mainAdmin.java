@@ -25,8 +25,12 @@ public class mainAdmin {
 		
 	}
 	
-	private void doViewPromotionOffer() {
+	private void doViewPromotionOffer(String ID) {
 		//view promotion offers
+		String output = "";
+		
+		//output += String.format("%s %s", foodid,foodname,blah blah blah)
+		System.out.println(output);
 	}
 	
 	private void doViewIngredientRequestOrder() {
