@@ -76,10 +76,10 @@ public class mainAdmin {
 	}
 	
 	private void displayEditFoodItemMenu() {
-		System.out.println("View FoodItem");
-		System.out.println("Add FoodItem");
-		System.out.println("Remove FoodItem");
-		System.out.println("Change FoodItem");
+		System.out.println("1. View FoodItem");
+		System.out.println("2. Add FoodItem");
+		System.out.println("3. Remove FoodItem");
+		System.out.println("4. Change FoodItem");
 	}
 	
 	private void doManageStall(ArrayList<Stall> stallList) {
@@ -279,7 +279,7 @@ public class mainAdmin {
 		
 		ingredientList.add(new IngredientOrder(ID, ingredientName, isOrderStatus));
 		Helper.line(40, "=");
-		System.out.println("Ingredients Purchased");
+		System.out.println("Ingredients Purchased Online");
 		Helper.line(40, "=");
 	}
 	
