@@ -36,17 +36,18 @@ public class mainAdmin {
 		ingredientList.add(new IngredientOrder(005, "Prawn", true));
 		
 		//Payment	(int id, String custName, String method, Food foodpurchased, int total)
-		paymentList.add(new Payment(001, "Mr. Lol", "cash", "Salmon Sushi", 9));
-		paymentList.add(new Payment(002, "Mr. Li", "NETS", "Bak Kut Teh", 6));
-		paymentList.add(new Payment(003, "Mr. Po", "PayWay", "Roti Plata", 9));
-		paymentList.add(new Payment(004, "Mr. Op", "PayNow", "Tomyam", 6));
-		paymentList.add(new Payment(005, "Mr. Liq", "PayNow", "Nasi Lemak", 9));
+		paymentList.add(new Payment(001, "Mr. Lol", "cash", "Salmon Sushi", 9, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(002, "Mr. Li", "NETS", "Bak Kut Teh", 6, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(003, "Mr. Po", "PayWay", "Roti Plata", 9, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(004, "Mr. Op", "PayNow", "Tomyam", 6, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(005, "Mr. Liq", "PayNow", "Nasi Lemak", 9, LocalDate.of(2020, 1, 8)));
 		
 		mainAdmin ma = new mainAdmin();
+		
+		//Daren Testing
 		//ma.doManageStall(stallList);
-	    //ma.doManageFoodItem(foodList);
 		//ma.doViewIngredientRequestOrder(ingredientList);
-		//ma.doGenerateSalesReport(paymentList);
+		ma.doGenerateSalesReport(paymentList);
 		
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
@@ -286,12 +287,35 @@ public class mainAdmin {
 		System.out.println("**Sales Report**"); 
 		Helper.line(40, "-");
 		
-		String output = String.format("%-7s %-15s %-15s %-15s %-10s\n", "ID", "CUSTOMER NAME", "PAYMENT METHOD", "FOOD PURCHASED", "TOTAL");
+		int rptType = Helper.readInt("1. Daily\n2. Monthly\nEnter report type to generate > ");
 		
+		int revenue = 0;
+		
+		int month = 0;
+		int day = 0;
+		
+		String output = String.format("%-7s %-15s %-15s %-15s %-10s %-10s\n", "ID", "CUSTOMER NAME", "PAYMENT METHOD", "FOOD PURCHASED", "TOTAL", "PAYMENT DATE");
+		month = Helper.readInt("Enter Month to view > ");
+		
+		if (rptType == 1) {
+			day = Helper.readInt("Enter Date to view > ");
+		}
 		for(Payment p : paymentList) {
-			output += String.format("%-7s %-15s %-15s %-15s %-10s\n", p.getId(), p.getCustName(), p.getMethod(), p.getFoodpurchased(), p.getTotal());
+			if (rptType == 2) {
+				if(p.getPayDate().getMonthValue() == month){
+					output += String.format("%-7s %-15s %-15s %-15s %-10s %-10s\n", p.getId(), p.getCustName(), p.getMethod(), p.getFoodpurchased(), p.getTotal(), p.getPayDate());
+					revenue += p.getTotal();
+				}
+			}
+			else if (rptType == 1) {
+				if(p.getPayDate().getMonthValue() == month && p.getPayDate().getDayOfMonth() == day){
+					output += String.format("%-7s %-15s %-15s %-15s %-10s %-10s\n", p.getId(), p.getCustName(), p.getMethod(), p.getFoodpurchased(), p.getTotal(), p.getPayDate());
+					revenue += p.getTotal();
+				}
+			}
 		}
 		
 		System.out.println(output);
+		System.out.println("Total revenue generated is > " + revenue);
 	}
 }

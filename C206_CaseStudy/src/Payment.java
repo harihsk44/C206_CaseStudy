@@ -1,16 +1,25 @@
+import java.time.LocalDate;
+
 public class Payment {
 	private int id;
 	private String method; 
 	private String foodpurchased;
 	private int total;
 	private String custName;
+	private LocalDate payDate;
 	
-	public Payment(int id, String custName, String method, String foodpurchased, int total) {
+	
+	public Payment(int id, String custName, String method, String foodpurchased, int total, LocalDate payDate) {
 		this.custName = custName;
 		this.id = id;
 		this.method = method;
 		this.foodpurchased = foodpurchased;
 		this.total = total;
+		this.payDate = payDate;
+	}
+	
+	public LocalDate getPayDate() {
+		return payDate;
 	}
 	
 	public String getCustName() {
@@ -51,5 +60,9 @@ public class Payment {
 
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	
+	public void setPayDate(LocalDate payDate) {
+		this.payDate = payDate;
 	}
 }
