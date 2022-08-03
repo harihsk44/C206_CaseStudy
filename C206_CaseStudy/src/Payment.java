@@ -19,7 +19,7 @@ public class Payment {
 	}
 	
 	public LocalDate getPayDate() {
-		return payDate;
+		return payDate; 
 	}
 	
 	public String getCustName() {

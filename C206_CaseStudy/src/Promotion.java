@@ -5,7 +5,7 @@ public class Promotion {
 	private int id;
 	private int promotionPrice;
 	private LocalDate promotionDate;
-	
+	 
 	//Constructor
 	public Promotion(int id, int promotionPrice, LocalDate promotionDate) {
 		super();
