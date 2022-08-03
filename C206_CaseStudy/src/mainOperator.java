@@ -42,10 +42,9 @@ public class mainOperator {
 		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
 		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 		
-		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, Month.AUGUST, 8)));
-		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, Month.DECEMBER, 8)));
-		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, Month.SEPTEMBER, 8)));
-		
+		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, 8, 8)));
+		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, 9, 8)));
+		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, 10, 8)));
 	}
 	
 	public static void main(String[] args) {
