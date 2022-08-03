@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class mainOperator {
 	
 	private ArrayList<Food> foodlist = new ArrayList<Food>();
+	//empty ArrayList though
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
