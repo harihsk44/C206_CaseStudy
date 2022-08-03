@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Food {
@@ -7,10 +8,10 @@ public class Food {
 	private int price;
 	private boolean isPromotion;
 	private int promotionPrice;
-	private Date promotionDate;
+	private LocalDate promotionDate;
 	
 	//Constructor
-	public Food(int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) {
+	public Food(int id, String name, int price, boolean isPromotion, int promotionPrice, LocalDate promotionDate) {
 		//super();
 		this.id = id;
 		this.name = name;
@@ -40,7 +41,7 @@ public class Food {
 		return promotionPrice;
 	}
 
-	public Date getPromotionDate() {
+	public LocalDate getPromotionDate() {
 		return promotionDate;
 	}
 	
@@ -60,7 +61,7 @@ public class Food {
 	public void setPromotionPrice(int promotionPrice) {
 		this.promotionPrice = promotionPrice;
 	}
-	public void setPromotionDate(Date promotionDate) {
+	public void setPromotionDate(LocalDate promotionDate) {
 		this.promotionDate = promotionDate;
 	}
 	

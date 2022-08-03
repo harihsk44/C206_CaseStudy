@@ -1,17 +1,14 @@
 
 public class IngredientOrder {
-	
 	private int id;
-	private String name;
+	private String ingredientName;
 	private boolean orderStatus;
-	private String order;
 	
 	//Constructor
-	public IngredientOrder(int id, String name, boolean orderStatus, String order) {
+	public IngredientOrder(int id, String ingredientName, boolean orderStatus) {
 		this.id = id;
-		this.name = name;
+		this.ingredientName = ingredientName;
 		this.orderStatus = orderStatus;
-		this.order = order;
 	}
 	
 	//getters
@@ -19,38 +16,26 @@ public class IngredientOrder {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+	public String getIngredientName() {
+		return ingredientName;
 	}
 
 	public boolean isOrderStatus() {
 		return orderStatus;
 	}
 
-	public String getOrder() {
-		return order;
-	}
+
 
 	//setters
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setIngredientName(String ingredientName) {
+		this.ingredientName = ingredientName;
 	}
 
 	public void setOrderStatus(boolean orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public void setOrder(String order) {
-		this.order = order;
-	}
-	
-	
-
-	
-	
-	
+	}		
 }

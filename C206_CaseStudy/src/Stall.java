@@ -9,17 +9,15 @@ public class Stall {
 	private String name;
 	private LocalDate startOperatingDate;
 	private LocalTime operatingTime;
-	private String Category;
 	private String OperatorStall;
 	
 	//Constructor
-	public Stall(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String category, String operatorStall) {
+	public Stall(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.startOperatingDate = startOperatingDate;
 		this.operatingTime = operatingTime;
-		Category = category;
 		OperatorStall = operatorStall;
 	}
 	
@@ -39,10 +37,6 @@ public class Stall {
 
 	public LocalTime getOperatingTime() {
 		return operatingTime;
-	}
-
-	public String getCategory() {
-		return Category;
 	}
 
 	public String getOperatorStall() {
@@ -65,10 +59,6 @@ public class Stall {
 
 	public void setOperatingTime(LocalTime operatingTime) {
 		this.operatingTime = operatingTime;
-	}
-
-	public void setCategory(String category) {
-		Category = category;
 	}
 
 	public void setOperatorStall(String operatorStall) {
