@@ -28,13 +28,15 @@ public class mainAdmin {
 
 		//	IngredientOrder(int id, String ingredientName, boolean orderStatus)
 		ingredientList.add(new IngredientOrder(001, "Rice", false));
-		ingredientList.add(new IngredientOrder(002, "Fish", false));
+		ingredientList.add(new IngredientOrder(002, "Fish", true));
 		ingredientList.add(new IngredientOrder(003, "Peanut", false));
-		ingredientList.add(new IngredientOrder(004, "Flour", false));
-		ingredientList.add(new IngredientOrder(005, "Prawn", false));
+		ingredientList.add(new IngredientOrder(004, "Flour", true));
+		ingredientList.add(new IngredientOrder(005, "Prawn", true));
 		
 		mainAdmin ma = new mainAdmin();
-		ma.doManageStall(stallList);
+		//ma.doManageStall(stallList);
+	    ma.doEditFoodItem(foodList);
+		//ma.doViewIngredientRequestOrder(ingredientList);
 	}
 	
 	private void displayMenu() {
@@ -47,10 +49,13 @@ public class mainAdmin {
 	}
 	
 	private void displayEditStallMenu() {
-		System.out.println("View Stall");
-		System.out.println("Add Stall");
-		System.out.println("Remove Stall");
-		System.out.println("Change Stall");
+		Helper.line(40, "-");
+		System.out.println("**Edit Stall Menu**");
+		Helper.line(40, "-");
+		System.out.println("1. View Stall");
+		System.out.println("2. Add Stall");
+		System.out.println("3. Remove Stall");
+		System.out.println("4. Update Stall");
 	}
 	
 	private void displayEditFoodItemMenu() {
@@ -61,12 +66,13 @@ public class mainAdmin {
 	}
 	
 	private void doManageStall(ArrayList<Stall> stallList) {
-		displayEditStallMenu();
 //		Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
 		
 		int option = 0;
 		
 		while (option != 5) {
+			displayEditStallMenu();
+			option = Helper.readInt("Enter option > ");
 			if (option == 1) {
 				String output = String.format("%-5s %-20s %-25s %-15s %-20s\n", "ID", "NAME", "START OPERATION DATE", "OPERATING TIME", "STALL OPERATOR");
 				
@@ -96,6 +102,7 @@ public class mainAdmin {
 						stallList.remove(s);
 						found = true;
 						System.out.println("Stall Removed");
+						break;
 					}
 				}
 				if (found == false) {
@@ -110,14 +117,15 @@ public class mainAdmin {
 				
 				for (Stall s : stallList) {
 					if(s.getId() == id) {
-						id = Helper.readInt("Enter Stall ID > ");
-						String name = Helper.readString("Enter Stall Name > ");
-						String operatorStall = Helper.readString("Enter Stall Operator > ");
+						id = Helper.readInt("Enter new Stall ID > ");
+						String name = Helper.readString("Enter new Stall Name > ");
+						String operatorStall = Helper.readString("Enter new Stall Operator > ");
 						
 						s.setName(name);
 						s.setOperatorStall(operatorStall);
 						found = true;
 						System.out.println("Stall Updated");
+						break;
 					}
 				}
 				if (found == false) {
@@ -127,8 +135,92 @@ public class mainAdmin {
 		}
 	}
 	
-	private void doManageFoodItem() {
-//		Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
+	private void doEditFoodItem(ArrayList<Food> foodList) {
+		  
+		int option = 0;
+		while (option != 5) {
+			displayEditFoodItemMenu();
+			option = Helper.readInt("Enter an option > ");
+	      
+			if (option == 1) {
+				System.out.println("FOOD LIST");
+				
+				String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ID", "Name",
+						"Price", "Is Promotion","Promotion Price", "Promotion Date");
+
+			    for (int i = 0; i < foodList.size(); i++) {
+
+			    	output += String.format("%-10s %-30s %-10s %-10s %-20d\n", foodList.get(i).getId(),
+			    			foodList.get(i).getName(), foodList.get(i).getPrice(),
+			    			foodList.get(i).isPromotion(),
+			    			foodList.get(i).getPromotionPrice(),foodList.get(i).getPromotionDate());
+			    }
+			    	
+			    System.out.println(output);
+			}else if (option == 2) {
+				int ID = Helper.readInt("Enter ID > ");
+				String name = Helper.readString("Enter name > ");
+				int price = Helper.readInt("Enter Price > ");
+				boolean isAvailable = false;
+				int promotionPrice = Helper.readInt("Enter Promotion Price > ");
+				LocalDate promotionDate = LocalDate.of(2020, Month.JANUARY, 8);
+				
+				foodList.add(new Food(ID, name, price, isAvailable, promotionPrice, promotionDate));
+				Helper.line(40, "=");
+				System.out.println("Food item added");
+				Helper.line(40, "=");
+			}else if (option == 3) {
+		        System.out.println("");
+		        Helper.line(40, "-");
+		        System.out.println("Remove Food Item");
+		        Helper.line(40, "-");
+		        System.out.println("");
+		        int ID = Helper.readInt("Enter ID of the item you want to remove > ");
+		        
+		        boolean present = false;
+		        
+		        for (Food  f: foodList) {
+		          if (f.getId() == ID) {
+		            foodList.remove(f);
+		            present = true;
+		            break;
+		          }      
+		        }
+		        if (present == false) {
+		          System.out.println("Food item not found");
+		        }
+				Helper.line(40, "=");
+				System.out.println("Food item Deleted!");
+				Helper.line(40, "=");
+	        
+			}else if (option == 4) {
+		        System.out.println("Update Food Item");
+	            int id = Helper.readInt("Enter Food Item ID > ");
+	            
+	            boolean present1 = false;
+	            
+	            for (Food f : foodList) {
+	              if(f.getId() == id) {
+	                String name = Helper.readString("Enter new Food Item Name > ");
+	                int price = Helper.readInt("Enter new Food Item price > ");
+	                int promotionPrice = Helper.readInt("Enter new Promotion Price > ");
+	                
+	                f.setName(name);
+	                f.setPrice(price);
+	                f.setPromotionPrice(promotionPrice);
+	                present1 = true;
+	                System.out.println("Food Item Updated");
+	                break;
+	              }
+	            }
+	            if (present1 == false) {
+	              System.out.println("Food Item Found");
+	            }
+				Helper.line(40, "=");
+				System.out.println("Food item Updated!");
+				Helper.line(40, "=");
+			}
+		}
 	}
 	
 	private void doViewPromotionOffer(String ID) {
@@ -139,8 +231,17 @@ public class mainAdmin {
 		System.out.println(output);
 	}
 	
-	private void doViewIngredientRequestOrder() {
+	private void doViewIngredientRequestOrder(ArrayList<IngredientOrder> ingredientList) {
+		Helper.line(40, "-");
+		System.out.println("**View Ingredient Request Order**");
+		Helper.line(40, "-");
 		
+		String output = String.format("%-7s %-15s %-20s\n", "ID", "INGREDIENT", "ORDER STATUS");
+
+		for(IngredientOrder io : ingredientList) {
+			output += String.format("%-7d %-15s %-20s\n", io.getId(), io.getIngredientName(), io.isOrderStatus()?"Ordered":"Havent Order");
+		}
+		System.out.println(output);
 	}
 	
 	private void doPurchaseIngredientOnline() {
