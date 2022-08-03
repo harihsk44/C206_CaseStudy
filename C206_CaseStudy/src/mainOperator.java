@@ -87,7 +87,12 @@ public class mainOperator {
 				
 			}else if (mainchoice == 4) {
 				MO.promotionsubmenu();
-				MO.dopromotion();
+				try {
+					MO.dopromotion();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
