@@ -1,4 +1,6 @@
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -52,9 +54,24 @@ public class mainAdmin {
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
 		
-		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, 8, 8)));
-		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, 9, 8)));
-		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, 10, 8)));
+		Date promoDate1 = null; 
+		Date promoDate2 = null;
+		Date promoDate3 = null;
+		//just initialising as null
+		try {
+			promoDate3 = new SimpleDateFormat("dd/MM/yyyy").parse("8/6/2020");
+			promoDate1=new SimpleDateFormat("dd/MM/yyyy").parse("8/10/2020");
+			promoDate2=new SimpleDateFormat("dd/MM/yyyy").parse("8/12/2020");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		promotionlist.add(new Promotion(002, 6, promoDate1));
+		promotionlist.add(new Promotion(003, 6, promoDate2));
+		promotionlist.add(new Promotion(001, 6, promoDate3));
+		
+		
 	}
 
 	private void displayMenu() {
