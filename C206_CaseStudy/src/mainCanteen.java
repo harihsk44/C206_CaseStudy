@@ -24,6 +24,12 @@ public class mainCanteen { // for customer
 		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		foodList.add(new Food(004, "Nasi Lemak", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		
+		//public Order(int id, String stall, String food, int price) {
+		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9));
+		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9));
+		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9));
+		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9));
 	
 		mainCanteen MC = new mainCanteen();
 		MC.doShowMenu();
