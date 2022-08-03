@@ -59,8 +59,7 @@ public class mainCanteen {
 	private void doModifyOrders() {
 		System.out.println("1. View Orders");
 		System.out.println("2. Add Orders");
-		System.out.println("3. Edit Orders");
-		System.out.println("4. Remove Orders");
+		System.out.println("3. Remove Orders");
 		
 		int qns = Helper.readInt("What do you want to modify? > ");
 		qns = -1;
@@ -73,8 +72,6 @@ public class mainCanteen {
 			} else if (qns == 2) {
 				
 			} else if (qns == 3) {
-				
-			} else if (qns == 4) {
 				
 			} else {
 				System.out.println("Invalid choice, please choose again");
