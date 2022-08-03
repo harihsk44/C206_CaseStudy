@@ -73,21 +73,6 @@ public class mainOperator {
 				MO.dopromotion();
 			}
 		}
-		if (mainchoice == 1) {
-			MO.doviewfood();
-			
-		}else if (mainchoice == 2) {
-			MO.ordersubmenu();
-			MO.doOrder();
-			
-		}else if (mainchoice == 3) {
-			MO.ingredientsubmenu();
-			MO.doingredient();
-			
-		}else if (mainchoice == 4) {
-			MO.promotionsubmenu();
-			MO.dopromotion();
-		}
 	}
 	
 	private void menu() {
@@ -101,21 +86,24 @@ public class mainOperator {
 	
 	private void ordersubmenu() {
 		System.out.println("1. View all orders");
-		System.out.println("2. Update order status\n");
+		System.out.println("2. Update order status");
+		System.out.println("3. Exit to main menu\n");
 	}
 	
 	private void ingredientsubmenu() {
 		System.out.println("1. Add request order");
 		System.out.println("2. View all request orders");
 		System.out.println("3. Edit request order");
-		System.out.println("4. Remove request order\n");
+		System.out.println("4. Remove request order");
+		System.out.println("5. Exit to main menu\n");
 	}
 	
 	private void promotionsubmenu() {
 		System.out.println("1. Add Promotion");
 		System.out.println("2. View Promotions");
 		System.out.println("3. Edit Promotion");
-		System.out.println("3. Remove Promotion\n");
+		System.out.println("3. Remove Promotion");
+		System.out.println("4. Exit to main menu\n");
 	}
 	
 	private void doviewfood() {
@@ -132,10 +120,18 @@ public class mainOperator {
 		
 	}
 	
+	
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
+		while (ingredientchoice != 5) {
+			if (ingredientchoice == 1) {
+				int ID = Helper.readInt("Enter ingredientID > ");
+				String ingredientName = Helper.readString("Enter ingredientName > ");
+				
+			}
+		}
 	}
-	
+	//int id, String ingredientName, boolean orderStatus
 	private void dopromotion() {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 	}
