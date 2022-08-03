@@ -121,7 +121,8 @@ public class mainOperator {
 		
 	}
 	
-	
+
+	//int id, String ingredientName, boolean orderStatus
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
 		while (ingredientchoice != 5) {
@@ -145,10 +146,43 @@ public class mainOperator {
 				
 			}else if (ingredientchoice == 3) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
+				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
+				boolean found = false;
+				for (IngredientOrder io : ingredientList) {
+					if(io.getId() == ingredientID) {
+						io.setOrderStatus(orderStatus);
+						found = true;
+					}
+				}
+				if (found) {
+					System.out.println("Ingredient order status updated!");
+				}else {
+					System.out.println("Order ID did not match records");
+				}
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (ingredientchoice == 4) {
+				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
+				int i = 0;
+				boolean removed = false;
+				while(i < ingredientList.size()) {
+					if(ingredientList.get(i).getId() == ingredientID) {
+						ingredientList.remove(i);
+						removed = true;
+					}
+				}
+				if (removed) {
+					System.out.println("IngredientOrder removed");
+				}else {
+					System.out.println("IngredientOrder not found");
+				}
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
 			}
 		}
 	}
-	//int id, String ingredientName, boolean orderStatus
+	
 	private void dopromotion() {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 	}
