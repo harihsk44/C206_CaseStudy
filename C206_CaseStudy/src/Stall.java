@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class Stall {
-	
 	private int id;
 	private String name;
 	private LocalDate startOperatingDate;

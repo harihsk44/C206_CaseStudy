@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class mainAdmin {
-	public ArrayList<Food> foodList = new ArrayList<Food>();
+	
 	public static void main(String[] args) {
-		//Daren do this :) 
 		ArrayList<Stall> stallList = new ArrayList<Stall>();
 		ArrayList<IngredientOrder> ingredientList = new ArrayList<IngredientOrder>();
 		ArrayList<Food> foodList = new ArrayList<Food>();
@@ -17,8 +16,8 @@ public class mainAdmin {
 		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
 		stallList.add(new Stall(002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee"));
 		stallList.add(new Stall(003, "Indian Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Kee"));
-		stallList.add(new Stall(003, "Malay Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
-		stallList.add(new Stall(003, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
+		stallList.add(new Stall(004, "Malay Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
+		stallList.add(new Stall(005, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
 		
 		//	Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
 		foodList.add(new Food(001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
@@ -26,13 +25,16 @@ public class mainAdmin {
 		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		foodList.add(new Food(004, "Nasi Lemak", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
-		
+
 		//	IngredientOrder(int id, String ingredientName, boolean orderStatus)
 		ingredientList.add(new IngredientOrder(001, "Rice", false));
 		ingredientList.add(new IngredientOrder(002, "Fish", false));
 		ingredientList.add(new IngredientOrder(003, "Peanut", false));
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
+		
+		mainAdmin ma = new mainAdmin();
+		ma.doManageStall(stallList);
 	}
 	
 	private void displayMenu() {
@@ -58,14 +60,75 @@ public class mainAdmin {
 		System.out.println("Change FoodItem");
 	}
 	
-	private void doManageStall() {
+	private void doManageStall(ArrayList<Stall> stallList) {
 		displayEditStallMenu();
-		(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
-		String output = String.format(null, "ID", "NAME", "START OPERATION DATE", "");
+//		Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
+		
+		int option = 0;
+		
+		while (option != 5) {
+			if (option == 1) {
+				String output = String.format("%-5s %-20s %-25s %-15s %-20s\n", "ID", "NAME", "START OPERATION DATE", "OPERATING TIME", "STALL OPERATOR");
+				
+				for (Stall s : stallList) {
+					output += String.format("%-5s %-20s %-25s %-15s %-20s\n", s.getId(), s.getName(), s.getStartOperatingDate(), s.getOperatingTime(), s.getOperatorStall());
+				}
+				System.out.println(output);
+			}
+			else if(option == 2) {
+				System.out.println("**ADD STALL**");
+				int id = Helper.readInt("Enter Stall ID > ");
+				String name = Helper.readString("Enter Stall Name > ");
+				LocalDate startOperatingDate = LocalDate.of(2020, Month.JANUARY, 8);
+				LocalTime operatingTime = LocalTime.of(10,43,12);
+				String operatorStall = Helper.readString("Enter Stall Operator > ");
+				
+				stallList.add(new Stall(id, name, startOperatingDate, operatingTime, operatorStall));
+			}
+			else if(option == 3) {
+				System.out.println("**REMOVE STALL**");
+				int id = Helper.readInt("Enter Stall ID > ");
+				
+				boolean found = false;
+				
+				for (Stall s : stallList) {
+					if(s.getId() == id) {
+						stallList.remove(s);
+						found = true;
+						System.out.println("Stall Removed");
+					}
+				}
+				if (found == false) {
+					System.out.println("Stall Not Found");
+				}
+			}
+			else if(option == 4) {
+				System.out.println("**UPDATE STALL**");
+				int id = Helper.readInt("Enter Stall ID > ");
+				
+				boolean found = false;
+				
+				for (Stall s : stallList) {
+					if(s.getId() == id) {
+						id = Helper.readInt("Enter Stall ID > ");
+						String name = Helper.readString("Enter Stall Name > ");
+						String operatorStall = Helper.readString("Enter Stall Operator > ");
+						
+						s.setName(name);
+						s.setOperatorStall(operatorStall);
+						found = true;
+						System.out.println("Stall Updated");
+					}
+				}
+				if (found == false) {
+					System.out.println("Stall Not Found");
+				}
+			}
+		}
 	}
 	
-	private void doEditFoodItem() {
-		
+	private void doManageFoodItem() {
+//		Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
 	}
 	
 	private void doViewPromotionOffer(String ID) {
