@@ -4,7 +4,7 @@ public class mainOperator {
 	
 	private ArrayList<Food> foodlist = new ArrayList<Food>();
 	private ArrayList<Order> orderlist = new ArrayList<Order>();
-	private ArrayList<RequestOrder> requestlist = new ArrayList<RequestOrder>();
+	private ArrayList<IngredientOrder> requestlist = new ArrayList<IngredientOrder>();
 	private ArrayList<Promotion> promotionlist = new ArrayList<Promotion>();
 	//empty ArrayLists though
 	
