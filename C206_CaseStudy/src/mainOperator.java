@@ -49,6 +49,7 @@ public class mainOperator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		mainOperator MO = new mainOperator();
+		MO.listadd();
 		MO.menu();
 		int mainchoice = Helper.readInt("Enter choice > ");
 		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
@@ -125,7 +126,7 @@ public class mainOperator {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
 		while (ingredientchoice != 5) {
 			if (ingredientchoice == 1) {
-				int ingredientID = Helper.readInt("Enter ingredientID > ");
+				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
 				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
 				ingredientList.add(new IngredientOrder(ingredientID, ingredientName, orderStatus));
@@ -134,11 +135,16 @@ public class mainOperator {
 				ingredientchoice = Helper.readInt("Enter choice > ");
 				
 			}else if (ingredientchoice == 2) {
-				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus" );
+				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
 				for (IngredientOrder io : ingredientList) {
-					
+					output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(), io.isOrderStatus());
 				}
 				System.out.println(output);
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (ingredientchoice == 3) {
+				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 			}
 		}
 	}
