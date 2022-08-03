@@ -31,4 +31,8 @@ public class Promotion {
 		this.promotionDate = promotionDate;
 	}
 	
+	public void setPromotionPrice(int promotionPrice) {
+		this.promotionPrice = promotionPrice;
+	}
+	
 }

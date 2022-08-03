@@ -185,6 +185,11 @@ public class mainOperator {
 	
 	private void dopromotion() {
 		int promotionchoice = Helper.readInt("Enter choice > ");
+		while (promotionchoice != 4) {
+			if (promotionchoice == 1) {
+				int promotionid = Helper.readInt("Enter promotion");
+			}
+		}
 	}
 	
 
