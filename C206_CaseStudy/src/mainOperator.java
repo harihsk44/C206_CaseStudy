@@ -66,14 +66,17 @@ public class mainOperator {
 		// TODO Auto-generated method stub
 		mainOperator MO = new mainOperator();
 		MO.listadd();
-		MO.menu();
-		int mainchoice = Helper.readInt("Enter choice > ");
-		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
-			System.out.println("Invalid Input!");
-			mainchoice = Helper.readInt("Enter choice > ");
-		}
+		int mainchoice = 0;
 		
-		while (mainchoice != 5) {
+		do {
+
+			MO.menu();
+			mainchoice = Helper.readInt("Enter choice > ");
+			while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
+				System.out.println("Invalid Input!");
+				mainchoice = Helper.readInt("Enter choice > ");
+			}
+			
 			if (mainchoice == 1) {
 				MO.doviewfood();
 				
@@ -90,11 +93,12 @@ public class mainOperator {
 				try {
 					MO.dopromotion();
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-		}
+			System.out.println();
+			
+		} while (mainchoice != 5);
 	}
 	
 	private void menu() {
@@ -131,14 +135,55 @@ public class mainOperator {
 	private void doviewfood() {
 		//retrieving and printing food stuff from food arraylist
 		
+		System.out.printf("%-5s %-15s %-12s %-12s %-12s %s%n",
+				"ID", "Name", "Price", "Promotion", "Promo Price",
+				"Promo Date");
+		
 		for (Food f : foodList) {
-			
+			System.out.printf("%-5s %-15s %-12s %-12s %-12s %s%n", 
+					f.getId(), f.getName(), f.getPrice(), 
+					f.isPromotion() ? "Yes" : "No", 
+							f.getPromotionPrice(), f.getPromotionDate());
 		}
+		
 	}
 	
 	private void doOrder() {
 		int orderchoice = Helper.readInt("Enter choice > ");
-		
+		while (orderchoice != 3) {
+			if (orderchoice == 1) {
+				System.out.printf("%-5s %-25s %-20s %-10s %s%n", 
+						"ID", "Stall", "Food", "Price",
+						"Place Status");
+				for (Order o : orderlist) {
+					System.out.printf("%-5s %-25s %-20s %-10s %s%n", 
+							o.getId(), o.getStall(), o.getFood(), o.getPrice(),
+							o.getStatus());
+				}
+			} else if (orderchoice == 2) {
+				
+				int orderID = Helper.readInt("Enter orderID > ");
+				boolean found = false;
+				for (Order o : orderlist) {
+					if (o.getId() == orderID) {
+						boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
+						o.setStatus(orderStatus);
+						System.out.println("Order status updated successfully!");
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					System.out.println("No any order found with ID " + orderID);
+				}
+					
+			}
+			System.out.println();
+			if (orderchoice != 3) {
+				ordersubmenu();
+				orderchoice = Helper.readInt("Enter choice > ");
+			}
+		}
 		
 	}
 	
