@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class mainCanteen {
+public class mainCanteen { // for customer
 
 	private ArrayList<Stall> stallList = new ArrayList<Stall>();
 	private ArrayList<Food> foodList = new ArrayList<Food>();
