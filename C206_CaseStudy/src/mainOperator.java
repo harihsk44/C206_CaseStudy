@@ -1,12 +1,30 @@
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 public class mainOperator {
 	
-	private ArrayList<Food> foodlist = new ArrayList<Food>();
+	private ArrayList<Food> foodList = new ArrayList<Food>();
 	private ArrayList<Order> orderlist = new ArrayList<Order>();
-	private ArrayList<IngredientOrder> requestlist = new ArrayList<IngredientOrder>();
+	private ArrayList<IngredientOrder> ingredientList= new ArrayList<IngredientOrder>();
 	private ArrayList<Promotion> promotionlist = new ArrayList<Promotion>();
 	//empty ArrayLists though
+	
+	public void listadd() {
+		//	Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
+		foodList.add(new Food(001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(002, "Bak Kut Teh", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(004, "Nasi Lemak", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		
+		//	IngredientOrder(int id, String ingredientName, boolean orderStatus)
+		ingredientList.add(new IngredientOrder(001, "Rice", false));
+		ingredientList.add(new IngredientOrder(002, "Fish", false));
+		ingredientList.add(new IngredientOrder(003, "Peanut", false));
+		ingredientList.add(new IngredientOrder(004, "Flour", false));
+		ingredientList.add(new IngredientOrder(005, "Prawn", false));
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -64,7 +82,8 @@ public class mainOperator {
 	
 	private void doviewfood() {
 		//retrieving and printing food stuff from food arraylist
-		for (Food f : foodlist) {
+		
+		for (Food f : mainAdmin.foodList) {
 			
 		}
 	}
