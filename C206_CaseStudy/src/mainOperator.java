@@ -1,7 +1,9 @@
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class mainOperator {
 	
@@ -183,11 +185,15 @@ public class mainOperator {
 		}
 	}
 	
+	//Promotion(int id, int promotionPrice, LocalDate promotionDate)
 	private void dopromotion() {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 		while (promotionchoice != 4) {
 			if (promotionchoice == 1) {
-				int promotionid = Helper.readInt("Enter promotion");
+				int promotionid = Helper.readInt("Enter promotionid > ");
+				int promotionprice = Helper.readInt("Enter promotionprice >");
+				String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
+				Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
 			}
 		}
 	}

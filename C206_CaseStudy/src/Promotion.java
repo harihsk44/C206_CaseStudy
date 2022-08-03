@@ -1,12 +1,13 @@
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Promotion {
 	private int id;
 	private int promotionPrice;
-	private LocalDate promotionDate;
+	private Date promotionDate;
 	
 	//Constructor
-	public Promotion(int id, int promotionPrice, LocalDate promotionDate) {
+	public Promotion(int id, int promotionPrice, Date promotionDate) {
 		super();
 		this.id = id;
 		this.promotionPrice = promotionPrice;
@@ -22,12 +23,12 @@ public class Promotion {
 		return promotionPrice;
 	}
 	 
-	public LocalDate getPromotionDate() {
+	public Date getPromotionDate() {
 		return promotionDate;
 	}
 
 	//setter
-	public void setPromotionDate(LocalDate promotionDate) {
+	public void setPromotionDate(Date promotionDate) {
 		this.promotionDate = promotionDate;
 	}
 	
