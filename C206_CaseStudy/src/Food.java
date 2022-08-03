@@ -11,7 +11,7 @@ public class Food {
 	
 	//Constructor
 	public Food(int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) {
-		super();
+		//super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
