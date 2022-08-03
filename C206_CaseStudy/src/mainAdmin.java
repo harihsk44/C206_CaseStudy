@@ -1,23 +1,35 @@
 
 
 public class mainAdmin {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 	
-	private void displaymenu() {
-		System.out.println("Edit Stall");
-		System.out.println("Edit Food Item");
-		System.out.println("Edit Food Item");
+	private void displayMenu() {
+		System.out.println("Manage Stall"); //Daren do this
+		System.out.println("Manage Food Item");
 		System.out.println("View Promotion Offer");
-		System.out.println("View Ingredient Request Order");
+		System.out.println("View Ingredient Request Order"); //Daren do this
 		System.out.println("Purchase Ingredient Online");
-		System.out.println("Generate Sales Report");
+		System.out.println("Generate Sales Report"); //Daren do this
 	}
 	
-	private void doEditStall() {
+	private void displayEditStallMenu() {
+		System.out.println("View Stall");
+		System.out.println("Add Stall");
+		System.out.println("Remove Stall");
+		System.out.println("Change Stall");
+	}
+	
+	private void displayEditFoodItemMenu() {
+		System.out.println("View FoodItem");
+		System.out.println("Add FoodItem");
+		System.out.println("Remove FoodItem");
+		System.out.println("Change FoodItem");
+	}
+	
+	private void doManageStall() {
 		
 	}
 	
