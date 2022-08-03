@@ -15,18 +15,18 @@ public class mainAdmin {
 		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 		
 		//	Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
-		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
-		stallList.add(new Stall(002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee"));
-		stallList.add(new Stall(003, "Indian Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Kee"));
-		stallList.add(new Stall(004, "Malay Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
-		stallList.add(new Stall(005, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
+		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, 1, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
+		stallList.add(new Stall(002, "Chinese Food Stall", LocalDate.of(2020, 1, 8),  LocalTime.of(10,43,12), "Mr.Wee"));
+		stallList.add(new Stall(003, "Indian Food Stall", LocalDate.of(2020, 1, 8),  LocalTime.of(10,43,12), "Mr.Kee"));
+		stallList.add(new Stall(004, "Malay Food Stall", LocalDate.of(2020, 1, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
+		stallList.add(new Stall(005, "Thai Food Stall", LocalDate.of(2020, 1, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
 		
 		//	Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
-		foodList.add(new Food(001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
-		foodList.add(new Food(002, "Bak Kut Teh", 9, true, 6, LocalDate.of(2020, Month.JANUARY, 8)));
-		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
-		foodList.add(new Food(004, "Nasi Lemak", 9, true, 6, LocalDate.of(2020, Month.JANUARY, 8)));
-		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, 1, 8)));
+		foodList.add(new Food(002, "Bak Kut Teh", 9, true, 6, LocalDate.of(2020, 1, 8)));
+		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, 1, 8)));
+		foodList.add(new Food(004, "Nasi Lemak", 9, true, 6, LocalDate.of(2020, 1, 8)));
+		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, 1, 8)));
 
 		//	IngredientOrder(int id, String ingredientName, boolean orderStatus) 
 		ingredientList.add(new IngredientOrder(001, "Rice", false));
@@ -51,9 +51,9 @@ public class mainAdmin {
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
 		
-		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, Month.AUGUST, 8)));
-		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, Month.DECEMBER, 8)));
-		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, Month.SEPTEMBER, 8)));
+		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, 8, 8)));
+		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, 9, 8)));
+		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, 10, 8)));
 	}
 
 	private void displayMenu() {
@@ -83,8 +83,6 @@ public class mainAdmin {
 	}
 	
 	private void doManageStall(ArrayList<Stall> stallList) {
-//		Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
-		
 		int option = 0;
 		
 		while (option != 5) {
@@ -102,7 +100,7 @@ public class mainAdmin {
 				System.out.println("**ADD STALL**");
 				int id = Helper.readInt("Enter Stall ID > ");
 				String name = Helper.readString("Enter Stall Name > ");
-				LocalDate startOperatingDate = LocalDate.of(2020, Month.JANUARY, 8);
+				LocalDate startOperatingDate = LocalDate.of(2020, 1, 8);
 				LocalTime operatingTime = LocalTime.of(10,43,12);
 				String operatorStall = Helper.readString("Enter Stall Operator > ");
 				
@@ -181,7 +179,7 @@ public class mainAdmin {
 				int price = Helper.readInt("Enter Price > ");
 				boolean isAvailable = false;
 				int promotionPrice = Helper.readInt("Enter Promotion Price > ");
-				LocalDate promotionDate = LocalDate.of(2020, Month.JANUARY, 8);
+				LocalDate promotionDate = LocalDate.of(2020, 1, 8);
 				
 				foodList.add(new Food(ID, name, price, isAvailable, promotionPrice, promotionDate));
 				Helper.line(40, "=");
