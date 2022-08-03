@@ -127,7 +127,7 @@ public class mainOperator {
 			if (ingredientchoice == 1) {
 				int ID = Helper.readInt("Enter ingredientID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
-				
+				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
 			}
 		}
 	}
