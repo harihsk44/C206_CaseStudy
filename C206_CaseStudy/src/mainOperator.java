@@ -125,9 +125,20 @@ public class mainOperator {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
 		while (ingredientchoice != 5) {
 			if (ingredientchoice == 1) {
-				int ID = Helper.readInt("Enter ingredientID > ");
+				int ingredientID = Helper.readInt("Enter ingredientID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
 				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
+				ingredientList.add(new IngredientOrder(ingredientID, ingredientName, orderStatus));
+				System.out.println("Ingredient request order added!");
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (ingredientchoice == 2) {
+				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus" );
+				for (IngredientOrder io : ingredientList) {
+					
+				}
+				System.out.println(output);
 			}
 		}
 	}
