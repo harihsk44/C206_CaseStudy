@@ -1,5 +1,5 @@
 
-public class RequestOrder {
+public class IngredientOrder {
 	
 	private int id;
 	private String name;
@@ -7,8 +7,7 @@ public class RequestOrder {
 	private String order;
 	
 	//Constructor
-	public RequestOrder(int id, String name, boolean orderStatus, String order) {
-		super();
+	public IngredientOrder(int id, String name, boolean orderStatus, String order) {
 		this.id = id;
 		this.name = name;
 		this.orderStatus = orderStatus;
