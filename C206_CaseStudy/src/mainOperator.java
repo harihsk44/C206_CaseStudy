@@ -3,7 +3,10 @@ import java.util.ArrayList;
 public class mainOperator {
 	
 	private ArrayList<Food> foodlist = new ArrayList<Food>();
-	//empty ArrayList though
+	private ArrayList<Order> orderlist = new ArrayList<Order>();
+	private ArrayList<RequestOrder> requestlist = new ArrayList<RequestOrder>();
+	private ArrayList<Promotion> promotionlist = new ArrayList<Promotion>();
+	//empty ArrayLists though
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -61,10 +64,15 @@ public class mainOperator {
 	
 	private void doviewfood() {
 		//retrieving and printing food stuff from food arraylist
+		for (Food f : foodlist) {
+			
+		}
 	}
 	
 	private void doOrder() {
 		int orderchoice = Helper.readInt("Enter choice > ");
+		
+		
 	}
 	
 	private void doingredient() {
