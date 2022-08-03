@@ -60,7 +60,7 @@ public class mainAdmin {
 	
 	private void doManageStall() {
 		displayEditStallMenu();
-		//(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall);
+		(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
 		String output = String.format(null, "ID", "NAME", "START OPERATION DATE", "");
 	}
 	
