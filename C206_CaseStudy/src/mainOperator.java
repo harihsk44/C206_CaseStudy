@@ -51,9 +51,27 @@ public class mainOperator {
 		mainOperator MO = new mainOperator();
 		MO.menu();
 		int mainchoice = Helper.readInt("Enter choice > ");
-		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4) {
+		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
 			System.out.println("Invalid Input!");
 			mainchoice = Helper.readInt("Enter choice > ");
+		}
+		
+		while (mainchoice != 5) {
+			if (mainchoice == 1) {
+				MO.doviewfood();
+				
+			}else if (mainchoice == 2) {
+				MO.ordersubmenu();
+				MO.doOrder();
+				
+			}else if (mainchoice == 3) {
+				MO.ingredientsubmenu();
+				MO.doingredient();
+				
+			}else if (mainchoice == 4) {
+				MO.promotionsubmenu();
+				MO.dopromotion();
+			}
 		}
 		if (mainchoice == 1) {
 			MO.doviewfood();
