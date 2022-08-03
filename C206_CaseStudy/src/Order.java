@@ -5,14 +5,16 @@ public class Order {
 	private String stall;
 	private String food;
 	private int price;
+	private boolean placeStatus;
 	
 	//Constructor
-	public Order(int id,  String stall, String food, int price) {
+	public Order(int id,  String stall, String food, int price, boolean placeStatus) {
 		super();
 		this.id = id;
 		this.stall = stall;
 		this.food = food;
 		this.price = price;
+		this.placeStatus = false;
 	}
 	
 	//getters
@@ -32,6 +34,10 @@ public class Order {
 		return price;
 	}
 	
+	public boolean getStatus() {
+		return placeStatus;
+	}
+	
 	//setters
 	public void setId(int id) {
 		this.id = id;
@@ -47,6 +53,10 @@ public class Order {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public void setStatus(boolean status) {
+		this.placeStatus = status;
 	}
 	
 	

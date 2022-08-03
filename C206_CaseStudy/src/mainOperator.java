@@ -35,10 +35,10 @@ public class mainOperator {
 		stallList.add(new Stall(003, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
 		
 		//public Order(int id, String stall, String food, int price) {
-		orderlist.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9));
-		orderlist.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9));
-		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9));
-		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9));
+		orderlist.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9, false));
+		orderlist.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9, false));
+		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
+		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 		
 		promotionlist.add(new Promotion(002, LocalDate.of(2020, Month.AUGUST, 8)));
 		promotionlist.add(new Promotion(003, LocalDate.of(2020, Month.DECEMBER, 8)));

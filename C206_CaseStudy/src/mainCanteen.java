@@ -26,78 +26,87 @@ public class mainCanteen { // for customer
 		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		
 		//public Order(int id, String stall, String food, int price) {
-		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9));
-		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9));
-		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9));
-		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9));
+		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9, false));
+		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9, false));
+		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
+		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 	
 		mainCanteen MC = new mainCanteen();
 		MC.doShowMenu();
 		
-		int option = Helper.readInt("Enter your option > ");
-		option = -1;
+		int option;
+		option = Helper.readInt("Enter your option > ");
 		
 		while (option != 7) {
 			if (option == 1) {
-				MC.doViewStalls();
+				MC.doViewStalls(stallList);
+				break;
 			} else if (option == 2) {
-				MC.doViewFoodMenu();
+				MC.doViewFoodMenu(foodList);
+				break;
 			} else if (option == 3) {
-				MC.doPlaceOrder();
+				MC.doAddOrder();
+				break;
 			} else if (option == 4) {
 				MC.doModifyOrders();
+				break;
 			} else if (option == 5) {
+				MC.doRemoveOrder();
+				break;
+			} else if (option == 6) {
 				MC.doMakePayment();
-			} else {
+				break;
+			} else if (option == 7){
 				System.out.println("Thank you for using the Ordering App!");
-			}
-		}
-	}
-	
-	private void doShowMenu() {
-		System.out.println("Welcome to the Canteen");
-		System.out.println("1. View Stalls");
-		System.out.println("2. View Food Menu");
-		System.out.println("3. Place Order");
-		System.out.println("4. Modify Orders");
-		System.out.println("5. Make Payment");
-		System.out.println("6. Quit");
-	}
-	
-	private void doViewStalls() {
-
-	}
-	
-	private void doViewFoodMenu() {
-
-	}
-	
-	private void doPlaceOrder() {
-		
-	}
-	
-	private void doModifyOrders() {
-		System.out.println("1. View Orders");
-		System.out.println("2. Add Orders");
-		System.out.println("3. Remove Orders");
-		
-		int qns = Helper.readInt("What do you want to modify? > ");
-		qns = -1;
-		
-		while (qns != 5) {
-			if (qns == 1) {
-
-			} else if (qns == 2) {
-				
-			} else if (qns == 3) {
-				
+				break;
 			} else {
 				System.out.println("Invalid choice, please choose again");
 			}
 		}
 	}
 	
-	private void doMakePayment() {
+	public void doShowMenu() {
+		System.out.println("Welcome to the Canteen");
+		System.out.println("1. View Stalls");
+		System.out.println("2. View Food Menu");
+		System.out.println("3. Add Orders");
+		System.out.println("4. Modify Orders");
+		System.out.println("5. Remove Orders");
+		System.out.println("6. Make Payment");
+		System.out.println("7. Quit");
+	}
+	
+	public void doViewStalls(ArrayList<Stall> stallList) {
+		String output = String.format("%-7s %-20s %-20s %-20s %-20s\n", "ID", "NAME", "OPERATING DATE", "OPERATING TIME", "OPERATING STALL");
+		
+		for (Stall s : stallList) {
+			output += String.format("%-7s %-20s %-20s %-20s %-20s\n", s.getId(), s.getName(), s.getStartOperatingDate(), s.getOperatingTime(), s.getOperatorStall());
+		}
+		System.out.println(output);
+	}
+	
+	public void doViewFoodMenu(ArrayList<Food> foodList) {
+		String output = String.format("%-7s %-20s %-5s %-10s %-5s %-20s", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
+		
+		for (Food f : foodList) {
+			output += String.format("%-7s %-20s %-5s %-10s %-5s %-20s", f.getId(), f.getName(), f.getPrice(), f.isPromotion(), f.getPromotionPrice(), f.getPromotionDate());
+		}
+		System.out.println(output);
+	}
+	
+	public void doAddOrder() {
+		
+	}
+	
+	public void doModifyOrders() {
+
+	}
+	
+	public void doRemoveOrder() {
+		
+	}
+	
+	public void doMakePayment() {
 		
 	}
 }
