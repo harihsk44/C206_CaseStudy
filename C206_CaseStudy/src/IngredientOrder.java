@@ -8,7 +8,7 @@ public class IngredientOrder {
 	public IngredientOrder(int id, String ingredientName, boolean orderStatus) {
 		this.id = id;
 		this.ingredientName = ingredientName;
-		this.orderStatus = orderStatus;
+		this.orderStatus = orderStatus; 
 	}
 	
 	//getters

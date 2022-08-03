@@ -11,7 +11,7 @@ public class Stall {
 	private LocalTime operatingTime;
 	private String OperatorStall;
 	
-	//Constructor
+	//Constructor 
 	public Stall(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall) {
 		super();
 		this.id = id;

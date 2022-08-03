@@ -9,7 +9,7 @@ public class Food {
 	private boolean isPromotion;
 	private int promotionPrice;
 	private LocalDate promotionDate;
-	
+	 
 	//Constructor
 	public Food(int id, String name, int price, boolean isPromotion, int promotionPrice, LocalDate promotionDate) {
 		//super();
