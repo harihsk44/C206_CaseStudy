@@ -204,7 +204,7 @@ public class mainOperator {
 		}
 	}
 	
-	//Promotion(int id, int promotionPrice, LocalDate promotionDate)
+	//Promotion(int id, int promotionPrice, Date promotionDate)
 	private void dopromotion() throws ParseException {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 		while (promotionchoice != 4) {
@@ -223,8 +223,6 @@ public class mainOperator {
 				}
 				
 				
-				
-				
 			}else if (promotionchoice == 2) {
 				String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
 				for (Promotion p : promotionlist) {
@@ -236,7 +234,7 @@ public class mainOperator {
 				}
 				System.out.println(output);
 				promotionsubmenu();
-				
+				promotionchoice = Helper.readInt("Enter choice > ");
 				
 			}else if (promotionchoice == 3) {
 				try {
@@ -258,10 +256,31 @@ public class mainOperator {
 						System.out.println("Promotionid not found");
 					}
 					
-					
 				}catch (Exception e) {
 					System.out.println(e);
 				}
+				promotionsubmenu();
+				promotionchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (promotionchoice == 4) {
+				int promotionID = Helper.readInt("Enter promotionID > ");
+				int i = 0;
+				boolean removed = false;
+				while (i < promotionlist.size()) {
+					if(promotionlist.get(i).getId() == promotionID) {
+						promotionlist.remove(i);
+						removed = true;
+					}
+				}
+				
+				if (removed) {
+					System.out.println("Promotion removed");
+				}else {
+					System.out.println("Promotion not found");
+				}
+				
+				promotionsubmenu();
+				promotionchoice = Helper.readInt("Enter choice > ");
 				
 				
 			}
