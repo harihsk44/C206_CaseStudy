@@ -54,7 +54,7 @@ public class mainCanteen { // for customer
 				MC.doRemoveOrder(orderList);
 				break;
 			} else if (option == 6) {
-				MC.doMakePayment();
+				MC.doCheckPayment(orderList);
 				break;
 			} else if (option == 7){
 				System.out.println("Thank you for using the Ordering App!");
@@ -155,9 +155,24 @@ public class mainCanteen { // for customer
         }
     }
 	
-	public void doMakePayment() {
+	public void doCheckPayment(ArrayList<Order> orderList) {
 		System.out.println("PAYMENT");
+		char check = Helper.readChar("Paid? (Y/N) > ");
 		int id = Helper.readInt("Enter Order ID for payment > ");
 		
+		for (Order o : orderList) {
+			if (id == o.getId()) {
+				if (check == 'N' || check == 'n') {
+					System.out.println("Please proceed to payment");
+				} else if (check == 'Y' || check == 'y') {
+					System.out.println("Payment successful");
+					o.setStatus(true);
+				} else {
+					System.out.println("Invalid option!");
+				}
+			} else {
+				System.out.println("This ID is not in the list!");
+			}
+		}
 	}
 }
