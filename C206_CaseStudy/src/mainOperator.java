@@ -40,35 +40,39 @@ public class mainOperator {
 		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
 		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 		
-		promotionlist.add(new Promotion(002, LocalDate.of(2020, Month.AUGUST, 8)));
-		promotionlist.add(new Promotion(003, LocalDate.of(2020, Month.DECEMBER, 8)));
-		promotionlist.add(new Promotion(001, LocalDate.of(2020, Month.SEPTEMBER, 8)));
+		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, Month.AUGUST, 8)));
+		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, Month.DECEMBER, 8)));
+		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, Month.SEPTEMBER, 8)));
 		
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		mainOperator MO = new mainOperator();
+		MO.listadd();
 		MO.menu();
 		int mainchoice = Helper.readInt("Enter choice > ");
-		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4) {
+		while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
 			System.out.println("Invalid Input!");
 			mainchoice = Helper.readInt("Enter choice > ");
 		}
-		if (mainchoice == 1) {
-			MO.doviewfood();
-			
-		}else if (mainchoice == 2) {
-			MO.ordersubmenu();
-			MO.doOrder();
-			
-		}else if (mainchoice == 3) {
-			MO.ingredientsubmenu();
-			MO.doingredient();
-			
-		}else if (mainchoice == 4) {
-			MO.promotionsubmenu();
-			MO.dopromotion();
+		
+		while (mainchoice != 5) {
+			if (mainchoice == 1) {
+				MO.doviewfood();
+				
+			}else if (mainchoice == 2) {
+				MO.ordersubmenu();
+				MO.doOrder();
+				
+			}else if (mainchoice == 3) {
+				MO.ingredientsubmenu();
+				MO.doingredient();
+				
+			}else if (mainchoice == 4) {
+				MO.promotionsubmenu();
+				MO.dopromotion();
+			}
 		}
 	}
 	
@@ -83,21 +87,24 @@ public class mainOperator {
 	
 	private void ordersubmenu() {
 		System.out.println("1. View all orders");
-		System.out.println("2. Update order status\n");
+		System.out.println("2. Update order status");
+		System.out.println("3. Exit to main menu\n");
 	}
 	
 	private void ingredientsubmenu() {
 		System.out.println("1. Add request order");
 		System.out.println("2. View all request orders");
 		System.out.println("3. Edit request order");
-		System.out.println("4. Remove request order\n");
+		System.out.println("4. Remove request order");
+		System.out.println("5. Exit to main menu\n");
 	}
 	
 	private void promotionsubmenu() {
 		System.out.println("1. Add Promotion");
 		System.out.println("2. View Promotions");
 		System.out.println("3. Edit Promotion");
-		System.out.println("3. Remove Promotion\n");
+		System.out.println("3. Remove Promotion");
+		System.out.println("4. Exit to main menu\n");
 	}
 	
 	private void doviewfood() {
@@ -114,10 +121,34 @@ public class mainOperator {
 		
 	}
 	
+	
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
+		while (ingredientchoice != 5) {
+			if (ingredientchoice == 1) {
+				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
+				String ingredientName = Helper.readString("Enter ingredientName > ");
+				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
+				ingredientList.add(new IngredientOrder(ingredientID, ingredientName, orderStatus));
+				System.out.println("Ingredient request order added!");
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (ingredientchoice == 2) {
+				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
+				for (IngredientOrder io : ingredientList) {
+					output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(), io.isOrderStatus());
+				}
+				System.out.println(output);
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+				
+			}else if (ingredientchoice == 3) {
+				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
+			}
+		}
 	}
-	
+	//int id, String ingredientName, boolean orderStatus
 	private void dopromotion() {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 	}
