@@ -45,13 +45,13 @@ public class mainCanteen { // for customer
 				MC.doViewFoodMenu(foodList);
 				break;
 			} else if (option == 3) {
-				MC.doAddOrder();
+				MC.doAddOrder(orderList);
 				break;
 			} else if (option == 4) {
-				MC.doModifyOrders();
+				MC.doModifyOrders(orderList);
 				break;
 			} else if (option == 5) {
-				MC.doRemoveOrder();
+				MC.doRemoveOrder(orderList);
 				break;
 			} else if (option == 6) {
 				MC.doMakePayment();
@@ -77,6 +77,7 @@ public class mainCanteen { // for customer
 	}
 	
 	public void doViewStalls(ArrayList<Stall> stallList) {
+		System.out.println("AVAILABLE STALLS");
 		String output = String.format("%-7s %-20s %-20s %-20s %-20s\n", "ID", "NAME", "OPERATING DATE", "OPERATING TIME", "OPERATING STALL");
 		
 		for (Stall s : stallList) {
@@ -86,6 +87,7 @@ public class mainCanteen { // for customer
 	}
 	
 	public void doViewFoodMenu(ArrayList<Food> foodList) {
+		System.out.println("FOOD MENU");
 		String output = String.format("%-7s %-20s %-5s %-10s %-5s %-20s", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
 		
 		for (Food f : foodList) {
@@ -94,20 +96,68 @@ public class mainCanteen { // for customer
 		System.out.println(output);
 	}
 	
-	public void doAddOrder() {
+	public void doAddOrder(ArrayList<Order> orderList) {
+        System.out.println("ADD ORDER");
+        int id = Helper.readInt("Enter Order ID > ");
+        String name = Helper.readString("Enter Stall Name > ");
+        String food = Helper.readString("Enter Food Name > ");
+        int price = Helper.readInt("Enter Price > ");
+        boolean status = Helper.readBoolean("Pay already (T/F) > ");
+        
+        orderList.add(new Order(id, name, food, price, status));
+	}
+	
+	public void doModifyOrders(ArrayList<Order> orderList) {
+        System.out.println("MODIFY ORDER");
+        int id = Helper.readInt("Enter Stall ID > ");
+        
+        boolean found = false;
+        
+        for (Order o : orderList) {
+          if(o.getId() == id) {
+            id = Helper.readInt("Enter new Order ID > ");
+            String sName = Helper.readString("Enter new Stall Name > ");
+            String fName = Helper.readString("Enter new Food Name > ");
+            int price = Helper.readInt("Enter new Price > ");
+            boolean status = Helper.readBoolean("Paid already? > ");
+            
+            o.setStall(sName);
+            o.setFood(fName);
+            o.setPrice(price);
+            o.setStatus(status);
+            found = true;
+            System.out.println("Order Updated");
+            break;
+          }
+        }
+        if (found == false) {
+          System.out.println("Invalid Order!");
+        }
 		
 	}
 	
-	public void doModifyOrders() {
-
-		
-	}
-	
-	public void doRemoveOrder() {
-		
-	}
+	public void doRemoveOrder(ArrayList<Order> orderList) {
+        System.out.println("REMOVE ORDER");
+        int id = Helper.readInt("Enter Order ID > ");
+        
+        boolean found = false;
+        
+        for (Order o : orderList) {
+          if(o.getId() == id) {
+            orderList.remove(o);
+            found = true;
+            System.out.println("Order Removed");
+            break;
+          }
+        }
+        if (found == false) {
+          System.out.println("Invalid Order!");
+        }
+    }
 	
 	public void doMakePayment() {
+		System.out.println("PAYMENT");
+		int id = Helper.readInt("Enter Order ID for payment > ");
 		
 	}
 }
