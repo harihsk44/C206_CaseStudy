@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class mainOperator {
 	private ArrayList<Order> orderlist = new ArrayList<Order>();
 	private ArrayList<IngredientOrder> ingredientList= new ArrayList<IngredientOrder>();
 	private ArrayList<Promotion> promotionlist = new ArrayList<Promotion>();
+	private ArrayList<Stall> stallList = new ArrayList<Stall>();
 	//empty ArrayLists though
 	
 	public void listadd() {
@@ -24,6 +26,24 @@ public class mainOperator {
 		ingredientList.add(new IngredientOrder(003, "Peanut", false));
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
+		
+//		Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
+		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
+		stallList.add(new Stall(002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee"));
+		stallList.add(new Stall(003, "Indian Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Kee"));
+		stallList.add(new Stall(003, "Malay Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
+		stallList.add(new Stall(003, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
+		
+		//public Order(int id, String stall, String food, int price) {
+		orderlist.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9));
+		orderlist.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9));
+		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9));
+		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9));
+		
+		promotionlist.add(new Promotion(002, LocalDate.of(2020, Month.AUGUST, 8)));
+		promotionlist.add(new Promotion(003, LocalDate.of(2020, Month.DECEMBER, 8)));
+		promotionlist.add(new Promotion(001, LocalDate.of(2020, Month.SEPTEMBER, 8)));
+		
 	}
 	
 	public static void main(String[] args) {
@@ -83,7 +103,7 @@ public class mainOperator {
 	private void doviewfood() {
 		//retrieving and printing food stuff from food arraylist
 		
-		for (Food f : mainAdmin.foodList) {
+		for (Food f : foodList) {
 			
 		}
 	}

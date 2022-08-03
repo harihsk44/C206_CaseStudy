@@ -12,6 +12,7 @@ public class mainAdmin {
 		ArrayList<Stall> stallList = new ArrayList<Stall>();
 		ArrayList<IngredientOrder> ingredientList = new ArrayList<IngredientOrder>();
 		ArrayList<Food> foodList = new ArrayList<Food>();
+		ArrayList<Promotion> promotionlist = new ArrayList<Promotion>();
 		
 		//	Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
 		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
@@ -33,8 +34,15 @@ public class mainAdmin {
 		ingredientList.add(new IngredientOrder(003, "Peanut", false));
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
+		
+		promotionlist.add(new Promotion(002, LocalDate.of(2020, Month.AUGUST, 8)));
+		promotionlist.add(new Promotion(003, LocalDate.of(2020, Month.DECEMBER, 8)));
+		promotionlist.add(new Promotion(001, LocalDate.of(2020, Month.SEPTEMBER, 8)));
 	}
 	
+	public ArrayList getfoodlist() {
+		return foodList;
+	}
 	private void displayMenu() {
 		System.out.println("Manage Stall"); //Daren do this
 		System.out.println("Manage Food Item");
