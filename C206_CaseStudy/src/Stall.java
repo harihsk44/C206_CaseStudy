@@ -1,17 +1,19 @@
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Stall {
 	
 	private int id;
 	private String name;
-	private Date startOperatingDate;
-	private Time operatingTime;
+	private LocalDate startOperatingDate;
+	private LocalTime operatingTime;
 	private String Category;
 	private String OperatorStall;
 	
 	//Constructor
-	public Stall(int id, String name, Date startOperatingDate, Time operatingTime, String category, String operatorStall) {
+	public Stall(int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String category, String operatorStall) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -31,11 +33,11 @@ public class Stall {
 		return name;
 	}
 
-	public Date getStartOperatingDate() {
+	public LocalDate getStartOperatingDate() {
 		return startOperatingDate;
 	}
 
-	public Time getOperatingTime() {
+	public LocalTime getOperatingTime() {
 		return operatingTime;
 	}
 
@@ -57,11 +59,11 @@ public class Stall {
 		this.name = name;
 	}
 
-	public void setStartOperatingDate(Date startOperatingDate) {
+	public void setStartOperatingDate(LocalDate startOperatingDate) {
 		this.startOperatingDate = startOperatingDate;
 	}
 
-	public void setOperatingTime(Time operatingTime) {
+	public void setOperatingTime(LocalTime operatingTime) {
 		this.operatingTime = operatingTime;
 	}
 
