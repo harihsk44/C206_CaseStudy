@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -42,9 +43,22 @@ public class mainOperator {
 		orderlist.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
 		orderlist.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 		
-		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, Month.AUGUST, 8)));
-		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, Month.DECEMBER, 8)));
-		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, Month.SEPTEMBER, 8)));
+		Date promoDate1 = null; 
+		Date promoDate2 = null;
+		Date promoDate3 = null;
+		//just initialising as null
+		try {
+			promoDate3 = new SimpleDateFormat("dd/MM/yyyy").parse("8/6/2020");
+			promoDate1=new SimpleDateFormat("dd/MM/yyyy").parse("8/10/2020");
+			promoDate2=new SimpleDateFormat("dd/MM/yyyy").parse("8/12/2020");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		promotionlist.add(new Promotion(002, 6, promoDate1));
+		promotionlist.add(new Promotion(003, 6, promoDate2));
+		promotionlist.add(new Promotion(001, 6, promoDate3));
 		
 	}
 	
@@ -186,17 +200,68 @@ public class mainOperator {
 	}
 	
 	//Promotion(int id, int promotionPrice, LocalDate promotionDate)
-	private void dopromotion() {
+	private void dopromotion() throws ParseException {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 		while (promotionchoice != 4) {
 			if (promotionchoice == 1) {
-				int promotionid = Helper.readInt("Enter promotionid > ");
-				int promotionprice = Helper.readInt("Enter promotionprice >");
-				String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
-				Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
+				
+				try {
+					int promotionid = Helper.readInt("Enter promotionid > ");
+					int promotionprice = Helper.readInt("Enter promotionprice >");
+					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
+					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
+					promotionlist.add(new Promotion(promotionid, promotionprice, promoDate));
+					System.out.println("Promotion added!");
+					
+				}catch (Exception e) {
+					System.out.println(e);
+				}
+				
+				
+				
+				
+			}else if (promotionchoice == 2) {
+				String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
+				for (Promotion p : promotionlist) {
+					Date promodate = p.getPromotionDate();
+					String promodatestr = promodate.toString();
+					//SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+					//String promodatestr = format1.format(promodate);
+					output += String.format("%-5d %-10d %-10s\n", p.getId(), p.getPromotionPrice(), promodatestr);
+				}
+				System.out.println(output);
+				promotionsubmenu();
+				
+				
+			}else if (promotionchoice == 3) {
+				try {
+					int promotionid = Helper.readInt("Enter promotionid > ");
+					int promotionprice = Helper.readInt("Enter promotionprice >");
+					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
+					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
+					boolean found = false;
+					for (Promotion p : promotionlist) {
+						if (promotionid == p.getId()) {
+							p.setPromotionPrice(promotionprice);
+							p.setPromotionDate(promoDate);
+							found = true;
+						}
+					}
+					if (found) {
+						System.out.println("Promotion updated!");
+					}else {
+						System.out.println("Promotionid not found");
+					}
+					
+					
+				}catch (Exception e) {
+					System.out.println(e);
+				}
+				
+				
 			}
 		}
 	}
 	
-
 }
+
