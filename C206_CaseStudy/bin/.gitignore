@@ -1,10 +1,10 @@
-/mainCanteen.class
 /Food.class
 /Helper.class
+/IngredientOrder.class
 /Order.class
+/Payment.class
 /Promotion.class
-/RequestOrder.class
 /Stall.class
 /mainAdmin.class
+/mainCanteen.class
 /mainOperator.class
-/IngredientOrder.class

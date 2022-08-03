@@ -51,9 +51,9 @@ public class mainAdmin {
 		ingredientList.add(new IngredientOrder(004, "Flour", false));
 		ingredientList.add(new IngredientOrder(005, "Prawn", false));
 		
-		promotionlist.add(new Promotion(002, LocalDate.of(2020, Month.AUGUST, 8)));
-		promotionlist.add(new Promotion(003, LocalDate.of(2020, Month.DECEMBER, 8)));
-		promotionlist.add(new Promotion(001, LocalDate.of(2020, Month.SEPTEMBER, 8)));
+		promotionlist.add(new Promotion(002, 6, LocalDate.of(2020, Month.AUGUST, 8)));
+		promotionlist.add(new Promotion(003, 6, LocalDate.of(2020, Month.DECEMBER, 8)));
+		promotionlist.add(new Promotion(001, 6, LocalDate.of(2020, Month.SEPTEMBER, 8)));
 	}
 
 	private void displayMenu() {
@@ -174,6 +174,7 @@ public class mainAdmin {
 			    }
 			    	
 			    System.out.println(output);
+			    
 			}else if (option == 2) {
 				int ID = Helper.readInt("Enter ID > ");
 				String name = Helper.readString("Enter name > ");
@@ -240,11 +241,17 @@ public class mainAdmin {
 		}
 	}
 	
-	private void doViewPromotionOffer(String ID) {
+	private void doViewPromotionOffer(ArrayList<Promotion> promotionList) {
 		//view promotion offers
-		String output = "";
+		Helper.line(40, "-");
+		System.out.println("VIEW PROMOTION OFFER");
+		Helper.line(40, "-");
 		
-		//output += String.format("%s %s", foodid,foodname,blah blah blah)
+		String output = String.format("%-10s %-18s %-20s\n", "ID", "PROMOTION PRICE", "PROMOTION DATE");
+
+		for(Promotion p : promotionList) {
+			output += String.format("%-10d %-18s %-20s\n", p.getId(), p.getPromotionPrice(), p.getPromotionDate());
+		}
 		System.out.println(output);
 	}
 	
@@ -261,8 +268,19 @@ public class mainAdmin {
 		System.out.println(output);
 	}
 	
-	private void doPurchaseIngredientOnline() {
+	private void doPurchaseIngredientOnline(ArrayList<IngredientOrder> ingredientList) {
+		Helper.line(40, "-");
+		System.out.println("**Purchase Ingredients Online**");
+		Helper.line(40, "-");
 		
+		int ID = Helper.readInt("Enter ID > ");
+		String ingredientName = Helper.readString("Enter name > ");
+		boolean isOrderStatus = true;
+		
+		ingredientList.add(new IngredientOrder(ID, ingredientName, isOrderStatus));
+		Helper.line(40, "=");
+		System.out.println("Ingredients Purchased");
+		Helper.line(40, "=");
 	}
 	
 	private void doGenerateSalesReport(ArrayList<Payment> paymentList) {
