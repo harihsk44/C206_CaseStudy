@@ -1,12 +1,36 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 
 public class mainCanteen { // for customer
 
-	private ArrayList<Stall> stallList = new ArrayList<Stall>();
-	private ArrayList<Food> foodList = new ArrayList<Food>();
-	private ArrayList<Order> orderList = new ArrayList<Order>();
-	
 	public static void main(String[] args) {
+		
+		ArrayList<Stall> stallList = new ArrayList<Stall>();
+		ArrayList<Food> foodList = new ArrayList<Food>();
+		ArrayList<Order> orderList = new ArrayList<Order>();
+	
+		//	Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
+		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
+		stallList.add(new Stall(002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee"));
+		stallList.add(new Stall(003, "Indian Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Kee"));
+		stallList.add(new Stall(003, "Malay Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Tee"));
+		stallList.add(new Stall(003, "Thai Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Yee"));
+	
+		//	Food	 (int id, String name, int price, boolean isPromotion, int promotionPrice, Date promotionDate) 
+		foodList.add(new Food(001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(002, "Bak Kut Teh", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(003, "Roti Plata", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(004, "Nasi Lemak", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
+		
+		//public Order(int id, String stall, String food, int price) {
+		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9));
+		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9));
+		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9));
+		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9));
+	
 		mainCanteen MC = new mainCanteen();
 		MC.doShowMenu();
 		
@@ -41,15 +65,11 @@ public class mainCanteen { // for customer
 	}
 	
 	private void doViewStalls() {
-		for (Stall s : stallList) {
-			System.out.println(s);
-		}
+
 	}
 	
 	private void doViewFoodMenu() {
-		for (Food f : foodList) {
-			System.out.println(f);
-		}
+
 	}
 	
 	private void doPlaceOrder() {
@@ -66,9 +86,7 @@ public class mainCanteen { // for customer
 		
 		while (qns != 5) {
 			if (qns == 1) {
-				for (Order o : orderList) {
-					System.out.println(o);
-				}
+
 			} else if (qns == 2) {
 				
 			} else if (qns == 3) {
