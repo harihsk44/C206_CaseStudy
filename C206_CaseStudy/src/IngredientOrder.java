@@ -25,7 +25,6 @@ public class IngredientOrder {
 	}
 
 
-
 	//setters
 	public void setId(int id) {
 		this.id = id;

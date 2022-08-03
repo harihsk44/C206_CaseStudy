@@ -7,6 +7,7 @@ public class Order {
 	private int price;
 	private boolean placeStatus;
 	
+	
 	//Constructor
 	public Order(int id,  String stall, String food, int price, boolean placeStatus) {
 		super();
