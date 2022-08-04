@@ -176,7 +176,9 @@ public class mainAdmin {
 			option = Helper.readInt("Enter an option > ");
 	      
 			if (option == 1) {
+				Helper.line(40, "=");
 				System.out.println("FOOD LIST");
+				Helper.line(40, "=");
 				
 				String output = String.format("%-10s %-30s %-10s %-10s %-20s\n", "ID", "Name",
 						"Price", "Is Promotion","Promotion Price", "Promotion Date");
@@ -243,7 +245,6 @@ public class mainAdmin {
 	                f.setPrice(price);
 	                f.setPromotionPrice(promotionPrice);
 	                present1 = true;
-	                System.out.println("Food Item Updated");
 	                break;
 	              }
 	            }
