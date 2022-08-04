@@ -10,6 +10,7 @@ public class mainCanteen { // for customer
 		ArrayList<Stall> stallList = new ArrayList<Stall>();
 		ArrayList<Food> foodList = new ArrayList<Food>();
 		ArrayList<Order> orderList = new ArrayList<Order>();
+		ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	
 		//	Stall	 (int id, String name, LocalDate startOperatingDate, LocalTime operatingTime, String operatorStall)
 		stallList.add(new Stall(001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee"));
@@ -30,6 +31,12 @@ public class mainCanteen { // for customer
 		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9, false));
 		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
 		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
+		
+		paymentList.add(new Payment(001, "Mr. Lol", "cash", "Salmon Sushi", 9, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(002, "Mr. Li", "NETS", "Bak Kut Teh", 6, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(003, "Mr. Po", "PayWay", "Roti Plata", 9, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(004, "Mr. Op", "PayNow", "Tomyam", 6, LocalDate.of(2020, 1, 8)));
+		paymentList.add(new Payment(005, "Mr. Liq", "PayNow", "Nasi Lemak", 9, LocalDate.of(2020, 1, 8)));
 	
 		mainCanteen MC = new mainCanteen();
 		MC.doShowMenu();
@@ -54,7 +61,7 @@ public class mainCanteen { // for customer
 				MC.doRemoveOrder(orderList);
 				break;
 			} else if (option == 6) {
-				MC.doCheckPayment(orderList);
+				MC.doMakePayment(paymentList);
 				break;
 			} else if (option == 7){
 				System.out.println("Thank you for using the Ordering App!");
@@ -88,10 +95,10 @@ public class mainCanteen { // for customer
 	
 	public void doViewFoodMenu(ArrayList<Food> foodList) {
 		System.out.println("FOOD MENU");
-		String output = String.format("%-7s %-20s %-5s %-10s %-5s %-20s", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
+		String output = String.format("%-7s %-20s %-5s %-10s %-5s %-20s\n", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
 		
 		for (Food f : foodList) {
-			output += String.format("%-7s %-20s %-5s %-10s %-5s %-20s", f.getId(), f.getName(), f.getPrice(), f.isPromotion(), f.getPromotionPrice(), f.getPromotionDate());
+			output += String.format("%-7s %-20s %-5s %-10s %-5s %-20s\n", f.getId(), f.getName(), f.getPrice(), f.isPromotion(), f.getPromotionPrice(), f.getPromotionDate());
 		}
 		System.out.println(output);
 	}
@@ -155,24 +162,13 @@ public class mainCanteen { // for customer
         }
     }
 	
-	public void doCheckPayment(ArrayList<Order> orderList) {
-		System.out.println("PAYMENT");
-		char check = Helper.readChar("Paid? (Y/N) > ");
-		int id = Helper.readInt("Enter Order ID for payment > ");
+	public void doMakePayment(ArrayList<Payment> paymentList) {
+		System.out.println("MAKE PAYMENT");
 		
-		for (Order o : orderList) {
-			if (id == o.getId()) {
-				if (check == 'N' || check == 'n') {
-					System.out.println("Please proceed to payment");
-				} else if (check == 'Y' || check == 'y') {
-					System.out.println("Payment successful");
-					o.setStatus(true);
-				} else {
-					System.out.println("Invalid option!");
-				}
-			} else {
-				System.out.println("This ID is not in the list!");
-			}
-		}
+		
+	}
+	
+	public void doPlaceOrder(ArrayList<Order> orderList) {
+		System.out.println("PLACE ORDER");
 	}
 }
