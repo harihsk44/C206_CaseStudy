@@ -52,18 +52,12 @@ public class mainCanteen { // for customer
 				MC.doViewFoodMenu(foodList);
 				break;
 			} else if (option == 3) {
-				MC.doAddOrder(orderList);
+				MC.doManageOrders(orderList);
 				break;
 			} else if (option == 4) {
-				MC.doModifyOrders(orderList);
-				break;
-			} else if (option == 5) {
-				MC.doRemoveOrder(orderList);
-				break;
-			} else if (option == 6) {
 				MC.doMakePayment(paymentList);
 				break;
-			} else if (option == 7){
+			} else if (option == 5) {
 				System.out.println("Thank you for using the Ordering App!");
 				break;
 			} else {
@@ -76,11 +70,9 @@ public class mainCanteen { // for customer
 		System.out.println("Welcome to the Canteen");
 		System.out.println("1. View Stalls");
 		System.out.println("2. View Food Menu");
-		System.out.println("3. Add Orders");
-		System.out.println("4. Modify Orders");
-		System.out.println("5. Remove Orders");
-		System.out.println("6. Make Payment");
-		System.out.println("7. Quit");
+		System.out.println("3. Manage Orders");
+		System.out.println("4. Make Payment");
+		System.out.println("5. Quit");
 	}
 	
 	public void doViewStalls(ArrayList<Stall> stallList) {
@@ -103,72 +95,94 @@ public class mainCanteen { // for customer
 		System.out.println(output);
 	}
 	
-	public void doAddOrder(ArrayList<Order> orderList) {
-        System.out.println("ADD ORDER");
-        int id = Helper.readInt("Enter Order ID > ");
-        String name = Helper.readString("Enter Stall Name > ");
-        String food = Helper.readString("Enter Food Name > ");
-        int price = Helper.readInt("Enter Price > ");
-        boolean status = Helper.readBoolean("Pay already (T/F) > ");
-        
-        orderList.add(new Order(id, name, food, price, status));
-	}
-	
-	public void doModifyOrders(ArrayList<Order> orderList) {
-        System.out.println("MODIFY ORDER");
-        int id = Helper.readInt("Enter Stall ID > ");
-        
-        boolean found = false;
-        
-        for (Order o : orderList) {
-          if(o.getId() == id) {
-            id = Helper.readInt("Enter new Order ID > ");
-            String sName = Helper.readString("Enter new Stall Name > ");
-            String fName = Helper.readString("Enter new Food Name > ");
-            int price = Helper.readInt("Enter new Price > ");
-            boolean status = Helper.readBoolean("Paid already? > ");
-            
-            o.setStall(sName);
-            o.setFood(fName);
-            o.setPrice(price);
-            o.setStatus(status);
-            found = true;
-            System.out.println("Order Updated");
-            break;
-          }
-        }
-        if (found == false) {
-          System.out.println("Invalid Order!");
-        }
+	public void doManageOrders(ArrayList<Order> orderList) {
+		System.out.println("ORDER MANAGEMENT");
+		System.out.println("1. Add Orders");
+		System.out.println("2. Modify Orders");
+		System.out.println("3. Remove Orders");
+		System.out.println("4. Place Order");
+		int option = Helper.readInt("What do you want to do to your orders? > ");
 		
+		while (option != 5) {
+			if (option == 1) {
+		        System.out.println("ADD ORDER");
+		        int id = Helper.readInt("Enter Order ID > ");
+		        String name = Helper.readString("Enter Stall Name > ");
+		        String food = Helper.readString("Enter Food Name > ");
+		        int price = Helper.readInt("Enter Price > ");
+		        boolean status = Helper.readBoolean("Pay already (T/F) > ");
+		        
+		        orderList.add(new Order(id, name, food, price, status));
+		        break;
+			} else if (option == 2) {
+		        System.out.println("MODIFY ORDER");
+		        int id = Helper.readInt("Enter Stall ID > ");
+		        
+		        boolean found = false;
+		        
+		        for (Order o : orderList) {
+		          if(o.getId() == id) {
+		            id = Helper.readInt("Enter new Order ID > ");
+		            String sName = Helper.readString("Enter new Stall Name > ");
+		            String fName = Helper.readString("Enter new Food Name > ");
+		            int price = Helper.readInt("Enter new Price > ");
+		            boolean status = Helper.readBoolean("Paid already? > ");
+		            
+		            o.setStall(sName);
+		            o.setFood(fName);
+		            o.setPrice(price);
+		            o.setStatus(status);
+		            found = true;
+		            System.out.println("Order Updated");
+		            break;
+		          }
+		        }
+		        if (found == false) {
+		          System.out.println("Invalid Order!");		          
+		        }
+		        break;
+			} else if (option == 3) {
+		        System.out.println("REMOVE ORDER");
+		        int id = Helper.readInt("Enter Order ID > ");
+		        
+		        boolean found = false;
+		        
+		        for (Order o : orderList) {
+		          if(o.getId() == id) {
+		            orderList.remove(o);
+		            found = true;
+		            System.out.println("Order Removed");
+		            break;
+		          }
+		        }
+		        if (found == false) {
+		          System.out.println("Invalid Order!");
+		        }
+		        break;
+			}
+		}
+//			} else if (option == 4) {
+//				System.out.println("PLACE ORDER");
+//				int id = Helper.readInt("Enter Food ID > ");
+//				
+//				for (Order o : orderList) {
+//					if (id == o.getId()) {
+//						o.setStatus(true);
+//					} else {
+//						o.setStatus(false);
+//						System.out.println("This ID is not available for ordering");
+//					}
+//				}
+//				break;
+//			} else {
+//				System.out.println("Invalid option!");
+//			}
+//		}
 	}
-	
-	public void doRemoveOrder(ArrayList<Order> orderList) {
-        System.out.println("REMOVE ORDER");
-        int id = Helper.readInt("Enter Order ID > ");
-        
-        boolean found = false;
-        
-        for (Order o : orderList) {
-          if(o.getId() == id) {
-            orderList.remove(o);
-            found = true;
-            System.out.println("Order Removed");
-            break;
-          }
-        }
-        if (found == false) {
-          System.out.println("Invalid Order!");
-        }
-    }
 	
 	public void doMakePayment(ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
 		
 		
-	}
-	
-	public void doPlaceOrder(ArrayList<Order> orderList) {
-		System.out.println("PLACE ORDER");
 	}
 }
