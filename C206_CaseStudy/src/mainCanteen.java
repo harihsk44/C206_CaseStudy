@@ -27,8 +27,8 @@ public class mainCanteen { // for customer
 		foodList.add(new Food(005, "Tomyam", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8)));
 		
 		//public Order(int id, String stall, String food, int price) {
-		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9, false));
-		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9, false));
+		orderList.add(new Order(001, "Japanese Food Stall", "Salmon Sushi", 9, true));
+		orderList.add(new Order(002, "Malay Food Stall", "Nasi Lemak", 9, true));
 		orderList.add(new Order(003, "Indian Food Stall", "Roti Prata", 9, false));
 		orderList.add(new Order(004, "Chinese Food Stall", "Tomyam", 9, false));
 		
@@ -55,7 +55,7 @@ public class mainCanteen { // for customer
 				MC.doManageOrders(orderList);
 				break;
 			} else if (option == 4) {
-				MC.doMakePayment(paymentList);
+				MC.doMakePayment(orderList, paymentList);
 				break;
 			} else if (option == 5) {
 				System.out.println("Thank you for using the Ordering App!");
@@ -178,10 +178,27 @@ public class mainCanteen { // for customer
 		}
 	}
 	
-	public void doMakePayment(ArrayList<Payment> paymentList) {
+	public void doMakePayment(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
 		
+		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s", 
+				"ID", "CUSTOMER NAME", "PAYMENT METHOD", "FOOD PURCHASED", "TOTAL", "PAYMENT DATE");
+		 //Payment(int id, String custName, String method, String foodpurchased, int total, LocalDate payDate)
+		 
+		int total = 0;
+		int id = paymentList.size() + 1;
+		String name = Helper.readString("Enter name > ");
+		String method = Helper.readString("Enter payment method > ");
+		String food = Helper.readString("Enter food purchased > ");
 		
+		for (Order o : orderList) {
+			if(o.getStatus() == true) {
+				total += o.getPrice();
+			}
+		}
+		paymentList.add(new Payment(id, name, method, food, total, LocalDate.of(2020, 1, 8)));
 		
+		System.out.println("Total payment is $" + total);
+		System.out.println("Payment Successful");
 	}
 }

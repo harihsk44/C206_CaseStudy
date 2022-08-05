@@ -15,7 +15,7 @@ public class Order {
 		this.stall = stall;
 		this.food = food;
 		this.price = price;
-		this.placeStatus = false;
+		this.placeStatus = placeStatus;
 	}
 	
 	//getters
