@@ -159,29 +159,28 @@ public class mainCanteen { // for customer
 		          System.out.println("Invalid Order!");
 		        }
 		        break;
+			} else if (option == 4) {
+				System.out.println("PLACE ORDER");
+				int id = Helper.readInt("Enter Food ID > ");
+				
+				for (Order o : orderList) {
+					if (id == o.getId()) {
+						o.setStatus(true);
+					} else {
+						o.setStatus(false);
+						System.out.println("This ID is not available for ordering");
+					}
+				}
+				break;
+			} else {
+				System.out.println("Invalid option!");
 			}
 		}
-//			} else if (option == 4) {
-//				System.out.println("PLACE ORDER");
-//				int id = Helper.readInt("Enter Food ID > ");
-//				
-//				for (Order o : orderList) {
-//					if (id == o.getId()) {
-//						o.setStatus(true);
-//					} else {
-//						o.setStatus(false);
-//						System.out.println("This ID is not available for ordering");
-//					}
-//				}
-//				break;
-//			} else {
-//				System.out.println("Invalid option!");
-//			}
-//		}
 	}
 	
 	public void doMakePayment(ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
+		
 		
 		
 	}
