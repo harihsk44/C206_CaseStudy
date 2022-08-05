@@ -47,19 +47,18 @@ public class mainCanteen { // for customer
 		while (option != 7) {
 			if (option == 1) {
 				MC.doViewStalls(stallList);
-				break;
+				option = Helper.readInt("Enter your option > ");
 			} else if (option == 2) {
 				MC.doViewFoodMenu(foodList);
-				break;
+				option = Helper.readInt("Enter your option > ");
 			} else if (option == 3) {
 				MC.doManageOrders(orderList);
-				break;
 			} else if (option == 4) {
 				MC.doMakePayment(orderList, paymentList);
-				break;
+				option = Helper.readInt("Enter your option > ");
 			} else if (option == 5) {
 				System.out.println("Thank you for using the Ordering App!");
-				break;
+				option = Helper.readInt("Enter your option > ");
 			} else {
 				System.out.println("Invalid choice, please choose again");
 			}
@@ -87,24 +86,34 @@ public class mainCanteen { // for customer
 	
 	public void doViewFoodMenu(ArrayList<Food> foodList) {
 		System.out.println("FOOD MENU");
-		String output = String.format("%-7s %-20s %-5s %-10s %-5s %-20s\n", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
+		String output = String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", "ID", "NAME", "PRICE", "PROMOTION", "PROMOTION PRICE", "PROMOTION DATE");
 		
 		for (Food f : foodList) {
-			output += String.format("%-7s %-20s %-5s %-10s %-5s %-20s\n", f.getId(), f.getName(), f.getPrice(), f.isPromotion(), f.getPromotionPrice(), f.getPromotionDate());
+			output += String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", f.getId(), f.getName(), f.getPrice(), f.isPromotion(), f.getPromotionPrice(), f.getPromotionDate());
 		}
 		System.out.println(output);
 	}
 	
 	public void doManageOrders(ArrayList<Order> orderList) {
 		System.out.println("ORDER MANAGEMENT");
-		System.out.println("1. Add Orders");
-		System.out.println("2. Modify Orders");
-		System.out.println("3. Remove Orders");
-		System.out.println("4. Place Order");
+		System.out.println("1. View Orders");
+		System.out.println("2. Add Orders");
+		System.out.println("3. Modify Orders");
+		System.out.println("4. Remove Orders");
+		System.out.println("5. Place Order");
 		int option = Helper.readInt("What do you want to do to your orders? > ");
 		
 		while (option != 5) {
 			if (option == 1) {
+				System.out.println("VIEW ORDER");
+				String output = String.format("%-7s %-20s %-25s %-10s\n", "ID", "STALL", "FOOD", "PRICE");
+				
+				for (Order o : orderList) {
+					output += String.format("%-7s %-20s %-25s %-10s\n", o.getId(), o.getStall(), o.getFood(), o.getPrice());
+				}
+				System.out.println(output);
+				break;
+			} else if (option == 2) {
 		        System.out.println("ADD ORDER");
 		        int id = Helper.readInt("Enter Order ID > ");
 		        String name = Helper.readString("Enter Stall Name > ");
@@ -112,9 +121,14 @@ public class mainCanteen { // for customer
 		        int price = Helper.readInt("Enter Price > ");
 		        boolean status = Helper.readBoolean("Pay already (T/F) > ");
 		        
-		        orderList.add(new Order(id, name, food, price, status));
+		        if (status == true) {
+		        	System.out.println("Food added!");
+		        	orderList.add(new Order(id, name, food, price, status));
+		        } else {
+		        	System.out.println("You need to pay first!");
+		        }
 		        break;
-			} else if (option == 2) {
+			} else if (option == 3) {
 		        System.out.println("MODIFY ORDER");
 		        int id = Helper.readInt("Enter Stall ID > ");
 		        
@@ -141,7 +155,7 @@ public class mainCanteen { // for customer
 		          System.out.println("Invalid Order!");		          
 		        }
 		        break;
-			} else if (option == 3) {
+			} else if (option == 4) {
 		        System.out.println("REMOVE ORDER");
 		        int id = Helper.readInt("Enter Order ID > ");
 		        
@@ -159,7 +173,7 @@ public class mainCanteen { // for customer
 		          System.out.println("Invalid Order!");
 		        }
 		        break;
-			} else if (option == 4) {
+			} else if (option == 5) {
 				System.out.println("PLACE ORDER");
 				int id = Helper.readInt("Enter Food ID > ");
 				
