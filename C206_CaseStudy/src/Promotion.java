@@ -3,11 +3,11 @@ import java.util.Date;
 
 public class Promotion {
 	private int id;
-	private int promotionPrice;
+	private double promotionPrice;
 	private Date promotionDate;
 	 
 	//Constructor
-	public Promotion(int id, int promotionPrice, Date promotionDate) {
+	public Promotion(int id, double promotionPrice, Date promotionDate) {
 		super();
 		this.id = id;
 		this.promotionPrice = promotionPrice;
@@ -19,7 +19,7 @@ public class Promotion {
 	    return id;
 	}
 	
-	 public int getPromotionPrice() {
+	 public double getPromotionPrice() {
 		return promotionPrice;
 	}
 	 
@@ -32,7 +32,7 @@ public class Promotion {
 		this.promotionDate = promotionDate;
 	}
 	
-	public void setPromotionPrice(int promotionPrice) {
+	public void setPromotionPrice(double promotionPrice) {
 		this.promotionPrice = promotionPrice;
 	}
 	

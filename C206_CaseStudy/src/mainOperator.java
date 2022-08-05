@@ -56,9 +56,9 @@ public class mainOperator {
 			e.printStackTrace();
 		}
 		
-		promotionlist.add(new Promotion(002, 6, promoDate1));
-		promotionlist.add(new Promotion(003, 6, promoDate2));
-		promotionlist.add(new Promotion(001, 6, promoDate3));
+		promotionlist.add(new Promotion(001, 6.00, promoDate3));
+		promotionlist.add(new Promotion(002, 6.00, promoDate1));
+		promotionlist.add(new Promotion(003, 6.00, promoDate2));
 		
 	}
 	
@@ -128,8 +128,8 @@ public class mainOperator {
 		System.out.println("1. Add Promotion");
 		System.out.println("2. View Promotions");
 		System.out.println("3. Edit Promotion");
-		System.out.println("3. Remove Promotion");
-		System.out.println("4. Exit to main menu\n");
+		System.out.println("4. Remove Promotion");
+		System.out.println("5. Exit to main menu\n");
 	}
 	
 	private void doviewfood() {
@@ -237,6 +237,7 @@ public class mainOperator {
 						ingredientList.remove(i);
 						removed = true;
 					}
+					i++;
 				}
 				if (removed) {
 					System.out.println("IngredientOrder removed");
@@ -252,12 +253,12 @@ public class mainOperator {
 	//Promotion(int id, int promotionPrice, Date promotionDate)
 	private void dopromotion() throws ParseException {
 		int promotionchoice = Helper.readInt("Enter choice > ");
-		while (promotionchoice != 4) {
+		while (promotionchoice != 5) {
 			if (promotionchoice == 1) {
 				
 				try {
 					int promotionid = Helper.readInt("Enter promotionid > ");
-					int promotionprice = Helper.readInt("Enter promotionprice >");
+					double promotionprice = Helper.readDouble("Enter promotionprice > ");
 					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
 					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
 					promotionlist.add(new Promotion(promotionid, promotionprice, promoDate));
@@ -267,6 +268,9 @@ public class mainOperator {
 					System.out.println(e);
 				}
 				
+				promotionsubmenu();
+				promotionchoice = Helper.readInt("Enter choice > ");
+				
 				
 			}else if (promotionchoice == 2) {
 				String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
@@ -275,7 +279,7 @@ public class mainOperator {
 					String promodatestr = promodate.toString();
 					//SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 					//String promodatestr = format1.format(promodate);
-					output += String.format("%-5d %-10d %-10s\n", p.getId(), p.getPromotionPrice(), promodatestr);
+					output += String.format("%-5d $%-10.2f %-10s\n", p.getId(), p.getPromotionPrice(), promodatestr);
 				}
 				System.out.println(output);
 				promotionsubmenu();
@@ -284,7 +288,7 @@ public class mainOperator {
 			}else if (promotionchoice == 3) {
 				try {
 					int promotionid = Helper.readInt("Enter promotionid > ");
-					int promotionprice = Helper.readInt("Enter promotionprice >");
+					double promotionprice = Helper.readDouble("Enter promotionprice > ");
 					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
 					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
 					boolean found = false;
@@ -316,6 +320,7 @@ public class mainOperator {
 						promotionlist.remove(i);
 						removed = true;
 					}
+					i++;
 				}
 				
 				if (removed) {
