@@ -98,7 +98,7 @@ public class mainCanteen { // for customer
 		System.out.println("ORDER MANAGEMENT");
 		System.out.println("1. View Orders");
 		System.out.println("2. Add Orders");
-		System.out.println("3. Modify Orders");
+		System.out.println("3. Update Orders");
 		System.out.println("4. Remove Orders");
 		System.out.println("5. Place Order");
 		int option = Helper.readInt("What do you want to do to your orders? > ");
@@ -129,7 +129,8 @@ public class mainCanteen { // for customer
 		        }
 		        break;
 			} else if (option == 3) {
-		        System.out.println("MODIFY ORDER");
+		        System.out.println("UPDATE ORDER");
+		        // customer only allow to update order quantity (increase by one/decrease by one, if reaches over 5, not allowed)
 		        int id = Helper.readInt("Enter Stall ID > ");
 		        
 		        boolean found = false;
@@ -191,6 +192,8 @@ public class mainCanteen { // for customer
 			}
 		}
 	}
+	
+	// need one more method to calculate total cost
 	
 	public void doMakePayment(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
