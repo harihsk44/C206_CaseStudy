@@ -7,6 +7,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class mainAdmin {
 	
 	public static void main(String[] args) {
@@ -336,4 +337,78 @@ public class mainAdmin {
 		System.out.println(output);
 		System.out.println("Total revenue generated is > " + revenue);
 	}
+
+public static void AddFoodItem(ArrayList<Food> foodList, Food f) {
+	foodList.add(f);
 }
+public static void setHeader(String header) {
+	Helper.line(80, "-");
+	System.out.println(header);
+	Helper.line(80, "-");
+}
+
+
+public static String retrieveAllFoodItem(ArrayList<Food> foodList) {
+	// TODO Auto-generated method stub
+	String output = "";
+	for (int i = 0; i < foodList.size(); i++) {
+
+	    	output += String.format("%-10s %-30s %-10s %-10s %-20d\n", foodList.get(i).getId(),
+	    			foodList.get(i).getName(), foodList.get(i).getPrice(),
+	    			foodList.get(i).isPromotion(),
+	    			foodList.get(i).getPromotionPrice(),foodList.get(i).getPromotionDate());
+	    }
+	return output;
+}
+public static void viewAllFoodItem(ArrayList<Food> foodList) {
+	mainAdmin.setHeader("FOOD LIST");
+	String output = String.format("%-10s %-30s %-10s %-10s %-20s %-20s\n", "ID", "Name",
+			"Price", "Promotion status","Promotion Price", "Promotion Date");
+	 output += retrieveAllFoodItem(foodList);	
+	System.out.println(output);
+}
+public static boolean DeleteFoodItem(ArrayList<Food> foodList, String name) {
+	
+	boolean isDeleted= false;
+
+	for (int i = 0; i < foodList.size(); i++) {
+		if (name.equalsIgnoreCase(foodList.get(i).getName())) {
+			isDeleted = true;				
+		}
+	}
+	return isDeleted;
+}
+public static void DeletedFoodItem(ArrayList<Food> foodList) {
+	mainAdmin.retrieveAllFoodItem(foodList);
+	String name = Helper.readString("Enter Food Name > ");
+	Boolean isDeleted = DeleteFoodItem(foodList, name);
+	if (isDeleted == false) {
+		System.out.println("Invalid Food Name");
+	} else {
+		System.out.println("Food " + name + " is Removed");
+	}
+}
+public static boolean doUpdateFoodItem(ArrayList<Food> foodList, String name) {
+	boolean isUpdated = false;
+
+	for (int i = 0; i < foodList.size(); i++) {
+		if (name.equalsIgnoreCase(foodList.get(i).getName())){
+			isUpdated = true;	
+		}
+	}
+	return isUpdated;
+	
+}
+public static void UpdateFoodItem(ArrayList<Food> foodList) {
+	mainAdmin.retrieveAllFoodItem(foodList);
+	String Name = Helper.readString("Enter Name > ");
+	Boolean isUpdated = doUpdateFoodItem(foodList, Name);
+	
+	if (isUpdated == false) {
+		System.out.println("Invalid Name");
+	} else {
+		System.out.println("Food " + Name + " Updated");
+	}
+}
+}
+
