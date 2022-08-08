@@ -24,7 +24,7 @@ import org.junit.Test;
  * I will not copy or allow others to copy my code.
  * I understand that copying code is considered as plagiarism.
  *
- * 21029424, 5 Aug 2022 11:42:40 am
+ * Team 1, 5 Aug 2022 11:42:40 am
  */
 
 public class mainTest {
@@ -237,8 +237,39 @@ public class mainTest {
 	
 	// =============================================================== CUSTOMER TEST =================================================================
 	
-	//@Test
+	@Test
 	public void testViewAllStalls() {
+		// Test if stallList is not null but empty, so that can add a new stall
+		assertNotNull("Test that stallslist are valid", stallList);
+		
+	}
+	
+	public void testViewAllFoodMenu() {
+		
+	}
+	
+	public void testViewAllOrders() {
+		
+	}
+	
+	public void testAddOrders() {
+		
+	}
+	
+	public void testUpdateOrders() {
+		
+	}
+	
+	public void testRemoveOrders() {
+		
+	}
+	
+	public void doCalculateTotalCost() {
+		
+	}
+	
+	@After
+	public void tearDown1() throws Exception {
 		
 	}
 }
