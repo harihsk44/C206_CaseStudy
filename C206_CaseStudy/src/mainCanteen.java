@@ -53,10 +53,12 @@ public class mainCanteen { // for customer
 				option = Helper.readInt("Enter your option > ");
 			} else if (option == 3) {
 				MC.doManageOrders(orderList);
-			} else if (option == 4) {
+			}else if (option == 4) {
+				MC.calculateeTotalCost(orderList, paymentList);
+			} else if (option == 5) {
 				MC.doMakePayment(orderList, paymentList);
 				option = Helper.readInt("Enter your option > ");
-			} else if (option == 5) {
+			} else if (option == 6) {
 				System.out.println("Thank you for using the Ordering App!");
 				option = Helper.readInt("Enter your option > ");
 			} else {
@@ -70,8 +72,9 @@ public class mainCanteen { // for customer
 		System.out.println("1. View Stalls");
 		System.out.println("2. View Food Menu");
 		System.out.println("3. Manage Orders");
-		System.out.println("4. Make Payment");
-		System.out.println("5. Quit");
+		System.out.println("4. Calculate Total Costs");
+		System.out.println("5. Make Payment");
+		System.out.println("6. Quit");
 	}
 	
 	public void doViewStalls(ArrayList<Stall> stallList) {
@@ -138,14 +141,27 @@ public class mainCanteen { // for customer
 		        for (Order o : orderList) {
 		          if(o.getId() == id) {
 		            id = Helper.readInt("Enter new Order ID > ");
-		            String sName = Helper.readString("Enter new Stall Name > ");
-		            String fName = Helper.readString("Enter new Food Name > ");
-		            int price = Helper.readInt("Enter new Price > ");
+		            int quantity = Helper.readInt("Quantity? > ");
+		            if (quantity == 1) {
+		            	int price = o.getPrice();
+		            	o.setPrice(price);
+		            } else if (quantity == 2) {
+		            	int price = (o.getPrice() * 2);
+		            	o.setPrice(price);
+		            } else if (quantity == 3) {
+		            	int price = (o.getPrice() * 3);
+		            	o.setPrice(price);
+		            } else if (quantity == 4) {
+		            	int price = (o.getPrice() * 4);
+		            	o.setPrice(price);
+		            } else if (quantity == 5) {
+		            	int price = (o.getPrice() * 5);
+		            	o.setPrice(price);
+		            } else if (quantity > 5) {
+		            	System.out.println("Maximum order item is 5! Please split order!");
+		            }
 		            boolean status = Helper.readBoolean("Paid already? > ");
-		            
-		            o.setStall(sName);
-		            o.setFood(fName);
-		            o.setPrice(price);
+
 		            o.setStatus(status);
 		            found = true;
 		            System.out.println("Order Updated");
@@ -194,6 +210,13 @@ public class mainCanteen { // for customer
 	}
 	
 	// need one more method to calculate total cost
+	public void calculateeTotalCost(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
+		System.out.println("Total Cost");
+		
+		for (Order o : orderList) {
+			
+		}
+	}
 	
 	public void doMakePayment(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
