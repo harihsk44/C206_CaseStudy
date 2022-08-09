@@ -278,6 +278,7 @@ public class mainCanteen { // for customer
 		
 		String output = String.format("%-10s %-10s %-10s %-10s %-10s %-10s", 
 				"ID", "CUSTOMER NAME", "PAYMENT METHOD", "FOOD PURCHASED", "TOTAL", "PAYMENT DATE");
+		
 		 //Payment(int id, String custName, String method, String foodpurchased, int total, LocalDate payDate)
 		 
 		int total = 0;
