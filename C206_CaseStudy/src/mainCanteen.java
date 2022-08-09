@@ -67,7 +67,7 @@ public class mainCanteen { // for customer
 				MC.doPlaceOrder(orderList);
 				option = Helper.readInt("Enter your option > ");
 			} else if (option == 8) {
-				MC.calculateTotalCost(orderList, paymentList);
+				MC.doMakePayment(orderList, paymentList);
 				option = Helper.readInt("Enter your option > ");
 			} else if (option == 9) {
 				System.out.println("Thank you for using the Ordering App!");
@@ -86,7 +86,7 @@ public class mainCanteen { // for customer
 		System.out.println("4. Add Order");
 		System.out.println("5. Update Order");
 		System.out.println("6. Remove Order");
-		System.out.println("7. Calculate Total Costs");
+		System.out.println("7. Place Order");
 		System.out.println("8. Make Payment");
 		System.out.println("9. Quit");
 	}
@@ -272,15 +272,6 @@ public class mainCanteen { // for customer
 			}
 		}
     }
-    
-    // SOS!!
-	public void calculateTotalCost(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
-		System.out.println("Total Cost");
-		
-		for (Order o : orderList) {
-			
-		}
-	}
 	
 	public void doMakePayment(ArrayList<Order> orderList, ArrayList<Payment> paymentList) {
 		System.out.println("MAKE PAYMENT");
