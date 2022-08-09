@@ -52,21 +52,24 @@ public class mainCanteen { // for customer
 				MC.doViewFoodMenu(foodList);
 				option = Helper.readInt("Enter your option > ");
 			} else if (option == 3) {
+				MC.doViewOrders(orderList);
+				option = Helper.readInt("Enter your option > ");
+			} else if (option == 4) {
 				MC.doAddOrders(orderList);
 				option = Helper.readInt("Enter your option > ");
-			}else if (option == 4) {
+			}else if (option == 5) {
 				MC.doUpdateOrders(orderList);
 				option = Helper.readInt("Enter your option > ");
-			} else if (option == 5) {
+			} else if (option == 6) {
 				MC.doRemoveOrders(orderList);
 				option = Helper.readInt("Enter your option > ");
-			} else if (option == 6) {
+			} else if (option == 7) {
 				MC.doPlaceOrder(orderList);
 				option = Helper.readInt("Enter your option > ");
-			} else if (option == 7) {
+			} else if (option == 8) {
 				MC.calculateTotalCost(orderList, paymentList);
 				option = Helper.readInt("Enter your option > ");
-			} else if (option == 8) {
+			} else if (option == 9) {
 				System.out.println("Thank you for using the Ordering App!");
 				option = Helper.readInt("Enter your option > ");
 			} else {
@@ -79,12 +82,13 @@ public class mainCanteen { // for customer
 		System.out.println("Welcome to the Canteen");
 		System.out.println("1. View Stalls");
 		System.out.println("2. View Food Menu");
-		System.out.println("3. Add Order");
-		System.out.println("4. Update Order");
-		System.out.println("5. Remove Order");
-		System.out.println("6. Calculate Total Costs");
-		System.out.println("7. Make Payment");
-		System.out.println("8. Quit");
+		System.out.println("3. View Orders");
+		System.out.println("4. Add Order");
+		System.out.println("5. Update Order");
+		System.out.println("6. Remove Order");
+		System.out.println("7. Calculate Total Costs");
+		System.out.println("8. Make Payment");
+		System.out.println("9. Quit");
 	}
 	
 	public static String retrieveAllStalls(ArrayList<Stall> stallList) {
