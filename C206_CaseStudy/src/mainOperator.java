@@ -103,8 +103,8 @@ public class mainOperator {
 	//Food no submenu cos its just viewing
 	
 	private void ingredientsubmenu() {
-		System.out.println("1. Add request ingredient");
-		System.out.println("2. View all request ingredient");
+		System.out.println("1. View all request ingredient");
+		System.out.println("2. Add request ingredient");
 		System.out.println("3. Remove request ingredient");
 		System.out.println("4. Exit to main menu\n");
 	}
@@ -124,7 +124,17 @@ public class mainOperator {
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
 		while (ingredientchoice != 4) {
-			if (ingredientchoice == 1) {
+			
+			 if (ingredientchoice == 1) {
+				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
+				for (IngredientOrder io : ingredientList) {
+					output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(), io.isOrderStatus());
+				}
+				System.out.println(output);
+				ingredientsubmenu();
+				ingredientchoice = Helper.readInt("Enter choice > ");
+			 }
+		else if (ingredientchoice == 2) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
 				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
