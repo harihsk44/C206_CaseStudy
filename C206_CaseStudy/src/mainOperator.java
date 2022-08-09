@@ -119,17 +119,15 @@ public class mainOperator {
 	private void ingredientsubmenu() {
 		System.out.println("1. Add request order");
 		System.out.println("2. View all request orders");
-		System.out.println("3. Edit request order");
-		System.out.println("4. Remove request order");
-		System.out.println("5. Exit to main menu\n");
+		System.out.println("3. Remove request order");
+		System.out.println("4. Exit to main menu\n");
 	}
 	
 	private void promotionsubmenu() {
 		System.out.println("1. Add Promotion");
 		System.out.println("2. View Promotions");
-		System.out.println("3. Edit Promotion");
-		System.out.println("4. Remove Promotion");
-		System.out.println("5. Exit to main menu\n");
+		System.out.println("3. Remove Promotion");
+		System.out.println("4. Exit to main menu\n");
 	}
 	
 	private void doviewfood() {
@@ -191,7 +189,7 @@ public class mainOperator {
 	//int id, String ingredientName, boolean orderStatus
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
-		while (ingredientchoice != 5) {
+		while (ingredientchoice != 4) {
 			if (ingredientchoice == 1) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
@@ -211,24 +209,6 @@ public class mainOperator {
 				ingredientchoice = Helper.readInt("Enter choice > ");
 				
 			}else if (ingredientchoice == 3) {
-				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
-				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
-				boolean found = false;
-				for (IngredientOrder io : ingredientList) {
-					if(io.getId() == ingredientID) {
-						io.setOrderStatus(orderStatus);
-						found = true;
-					}
-				}
-				if (found) {
-					System.out.println("Ingredient order status updated!");
-				}else {
-					System.out.println("Order ID did not match records");
-				}
-				ingredientsubmenu();
-				ingredientchoice = Helper.readInt("Enter choice > ");
-				
-			}else if (ingredientchoice == 4) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 				int i = 0;
 				boolean removed = false;
@@ -253,7 +233,7 @@ public class mainOperator {
 	//Promotion(int id, int promotionPrice, Date promotionDate)
 	private void dopromotion() throws ParseException {
 		int promotionchoice = Helper.readInt("Enter choice > ");
-		while (promotionchoice != 5) {
+		while (promotionchoice != 4) {
 			if (promotionchoice == 1) {
 				
 				try {
@@ -286,32 +266,6 @@ public class mainOperator {
 				promotionchoice = Helper.readInt("Enter choice > ");
 				
 			}else if (promotionchoice == 3) {
-				try {
-					int promotionid = Helper.readInt("Enter promotionid > ");
-					double promotionprice = Helper.readDouble("Enter promotionprice > ");
-					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
-					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
-					boolean found = false;
-					for (Promotion p : promotionlist) {
-						if (promotionid == p.getId()) {
-							p.setPromotionPrice(promotionprice);
-							p.setPromotionDate(promoDate);
-							found = true;
-						}
-					}
-					if (found) {
-						System.out.println("Promotion updated!");
-					}else {
-						System.out.println("Promotionid not found");
-					}
-					
-				}catch (Exception e) {
-					System.out.println(e);
-				}
-				promotionsubmenu();
-				promotionchoice = Helper.readInt("Enter choice > ");
-				
-			}else if (promotionchoice == 4) {
 				int promotionID = Helper.readInt("Enter promotionID > ");
 				int i = 0;
 				boolean removed = false;
