@@ -72,17 +72,13 @@ public class mainOperator {
 
 			MO.menu();
 			mainchoice = Helper.readInt("Enter choice > ");
-			while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 && mainchoice != 5) {
+			while (mainchoice != 1 && mainchoice != 2 && mainchoice != 3 && mainchoice != 4 ) {
 				System.out.println("Invalid Input!");
 				mainchoice = Helper.readInt("Enter choice > ");
 			}
 			
 			if (mainchoice == 1) {
 				MO.doviewfood();
-				
-			}else if (mainchoice == 2) {
-				MO.ordersubmenu();
-				MO.doOrder();
 				
 			}else if (mainchoice == 3) {
 				MO.ingredientsubmenu();
@@ -103,18 +99,11 @@ public class mainOperator {
 	
 	private void menu() {
 		System.out.println("1. View Food Items");
-		System.out.println("2. Manage Orders");
-		System.out.println("3. Manage Request Orders of ingredients");
-		System.out.println("4. Manage Promotion Offers of stalls\n");
+		System.out.println("2. Manage Request Orders of ingredients");
+		System.out.println("3. Manage Promotion Offers of stalls\n");
 	}
 	
 	//Food no submenu cos its just viewing
-	
-	private void ordersubmenu() {
-		System.out.println("1. View all orders");
-		System.out.println("2. Update order status");
-		System.out.println("3. Exit to main menu\n");
-	}
 	
 	private void ingredientsubmenu() {
 		System.out.println("1. Add request order");
@@ -146,44 +135,6 @@ public class mainOperator {
 		
 	}
 	
-	private void doOrder() {
-		int orderchoice = Helper.readInt("Enter choice > ");
-		while (orderchoice != 3) {
-			if (orderchoice == 1) {
-				System.out.printf("%-5s %-25s %-20s %-10s %s%n", 
-						"ID", "Stall", "Food", "Price",
-						"Place Status");
-				for (Order o : orderlist) {
-					System.out.printf("%-5s %-25s %-20s %-10s %s%n", 
-							o.getId(), o.getStall(), o.getFood(), o.getPrice(),
-							o.getStatus());
-				}
-			} else if (orderchoice == 2) {
-				
-				int orderID = Helper.readInt("Enter orderID > ");
-				boolean found = false;
-				for (Order o : orderlist) {
-					if (o.getId() == orderID) {
-						boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
-						o.setStatus(orderStatus);
-						System.out.println("Order status updated successfully!");
-						found = true;
-						break;
-					}
-				}
-				if (!found) {
-					System.out.println("No any order found with ID " + orderID);
-				}
-					
-			}
-			System.out.println();
-			if (orderchoice != 3) {
-				ordersubmenu();
-				orderchoice = Helper.readInt("Enter choice > ");
-			}
-		}
-		
-	}
 	
 
 	//int id, String ingredientName, boolean orderStatus
