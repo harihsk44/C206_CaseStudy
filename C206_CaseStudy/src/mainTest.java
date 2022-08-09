@@ -293,20 +293,64 @@ public class mainTest {
 	}
 	
 	public void testAddOrders() {
-		//
+		// Test if order list is not null, so new items can be added
+		assertNotNull("Test if there is valid orderList to add items", orderList);
+		
+		// Given an empty order list, when one item is added, the size of the list will be 1
+		mainCanteen.retrieveAddOrders(orderList, o1, 001);
+		assertEquals("Test if orderList size is now 1", 1, orderList.size());
+		
+		// Check if item is duplicated
+		assertSame("Test that order added is duplicated", o1, orderList.get(0));
+		
+		// Test if another item is added, the size of the list will be 2
+		mainCanteen.retrieveAddOrders(orderList, o2, 002);
+		mainCanteen.retrieveAddOrders(orderList, o3, 003);
+		assertEquals("Test if orderList size is now 3", 3, orderList.size());
+		assertSame("Test that order added is the same as the 3rd item in the list", o3, orderList.get(2));
 	}
 	
 	public void testRemoveOrders() {
+		assertNotNull("Test if items are valid for removal", orderList);
 		
+		mainCanteen.retrieveAddOrders(orderList, o1, 001);
+		mainCanteen.retrieveAddOrders(orderList, o2, 002);
+		mainCanteen.retrieveAddOrders(orderList, o3, 003);
+		mainCanteen.retrieveAddOrders(orderList, o4, 004);
+		
+		boolean removeItem001 = mainCanteen.checkRemovedOrders(orderList, 001);
+		assertTrue("Check if order 001 is removed", removeItem001);
+		
+		boolean removeItem002 = mainCanteen.checkRemovedOrders(orderList, 002);
+		assertTrue("Check if order 002 is removed", removeItem002);
+		
+		boolean removeItem003 = mainCanteen.checkRemovedOrders(orderList, 003);
+		assertTrue("Check if order 003 is removed", removeItem003);
+		
+		boolean removeItem004 = mainCanteen.checkRemovedOrders(orderList, 004);
+		assertTrue("Check if order 001 is removed", removeItem004);
 	}
 	
-	public void testPlaceOrder() {
+	public void testUpdateOrders() {
+		assertNotNull("Test if orderList have only maximum of 5 items", orderList);
+		mainCanteen.retrieveAddOrders(orderList, o1, 001);
+		mainCanteen.retrieveAddOrders(orderList, o2, 002);
+		mainCanteen.retrieveAddOrders(orderList, o3, 003);
+		mainCanteen.retrieveAddOrders(orderList, o4, 004);
+		
+		boolean isUpdated = mainCanteen.checkUpdateOrders(orderList, 4);
+		assertTrue("Check if order items is less than 5", isUpdated);
+		assertFalse("Test if order quantity is updated", isUpdated);
 		
 	}
 
 	
 	@After
 	public void tearDown1() throws Exception {
-		
+		o1 = null;
+		o2 = null;
+		o3 = null;
+		o4 = null;
+		orderList = null;
 	}
 }

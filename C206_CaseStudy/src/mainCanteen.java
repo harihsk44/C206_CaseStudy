@@ -139,12 +139,13 @@ public class mainCanteen { // for customer
 		System.out.println(output);
 	}
 	
-	public static boolean retrieveAddOrders(ArrayList<Order> orderList, int id, String food) {
+	public static boolean retrieveAddOrders(ArrayList<Order> orderList, Order order, int id) {
 		boolean isAdded = false;
 		
 		for (Order o : orderList) {
-			if (id != o.getId() && food != o.getFood()) {
+			if (id != o.getId()) {
 				isAdded = true;
+				orderList.add(order);
 			}
 		}
 		return isAdded;
