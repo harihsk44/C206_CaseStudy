@@ -239,24 +239,60 @@ public class mainTest {
 	
 	@Test
 	public void testViewAllStalls() {
-		// Test if stallList is not null but empty, so that can add a new stall
-		assertNotNull("Test that stallslist are valid", stallList);
+		// Test if stallList is not null but empty
+		assertNotNull("Test that Stall List are valid", stallList);
 		
+		// Test if stalls are retrieved from the stallList
+		String allStalls = mainCanteen.retrieveAllStalls(stallList);
+		String testOutput = "";
+		assertEquals("Check ViewAllStalls", testOutput, allStalls);
+		
+		// Test if expected output display is the same as the displayed output
+		allStalls = mainCanteen.retrieveAllStalls(stallList);
+		
+		testOutput = String.format("%-7s %-20s %-20s %-20s %-20s\n", 001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee");
+		testOutput += String.format("%-7s %-20s %-20s %-20s %-20s\n", 002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee");
+		
+		assertEquals("Check ViewAllStalls", testOutput, allStalls);
 	}
 	
 	public void testViewAllFoodMenu() {
+		// Test if foodList is not null but empty
+		assertNotNull("Test that Food List are valid", foodList);
 		
+		// Test if food menu are retrieved from the foodList
+		String allFood = mainCanteen.retrieveAllFoodMenu(foodList);
+		String testOutput = "";
+		assertEquals("Check ViewAllFoodMenu", testOutput, allFood);
+		
+		// Test if expected output display is the same as the displayed output
+		allFood = mainCanteen.retrieveAllFoodMenu(foodList);
+		
+		testOutput = String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", 001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8));
+		testOutput += String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", 002, "Bak Kut Teh", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8));
+		
+		assertEquals("Check ViewAllFoodMenu", testOutput, allFood);
 	}
 	
 	public void testViewAllOrders() {
+		// Test if orderList is not null but empty
+		assertNotNull("Test that Order List are valid", orderList);
 		
+		// Test if orders are retrieved from the orderList
+		String allOrders = mainCanteen.retrieveAllOrders(orderList);
+		String testOutput = "";
+		assertEquals("Check ViewAllOrders", testOutput, allOrders);
+		
+		// Test if expected output display is the same as the displayed output
+		allOrders = mainCanteen.retrieveAllOrders(orderList);
+		
+		testOutput = String.format("%-7s %-20s %-25s %-10s\n", 001, "Japanese Food Stall", "Salmon Sushi", 9, true);
+		testOutput += String.format("%-7s %-20s %-25s %-10s\n", 002, "Malay Food Stall", "Nasi Lemak", 9, true);
+		
+		assertEquals("Check ViewAllOrders", testOutput, allOrders);
 	}
 	
 	public void testAddOrders() {
-		
-	}
-	
-	public void testUpdateOrders() {
 		
 	}
 	
@@ -264,9 +300,10 @@ public class mainTest {
 		
 	}
 	
-	public void doCalculateTotalCost() {
+	public void testPlaceOrder() {
 		
 	}
+
 	
 	@After
 	public void tearDown1() throws Exception {
