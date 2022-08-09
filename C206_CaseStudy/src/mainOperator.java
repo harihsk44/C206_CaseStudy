@@ -78,13 +78,10 @@ public class mainOperator {
 			}
 			
 			if (mainchoice == 1) {
-				MO.doviewfood();
-				
-			}else if (mainchoice == 3) {
 				MO.ingredientsubmenu();
 				MO.doingredient();
 				
-			}else if (mainchoice == 4) {
+			}else if (mainchoice == 2) {
 				MO.promotionsubmenu();
 				try {
 					MO.dopromotion();
@@ -98,17 +95,17 @@ public class mainOperator {
 	}
 	
 	private void menu() {
-		System.out.println("1. View Food Items");
-		System.out.println("2. Manage Request Orders of ingredients");
-		System.out.println("3. Manage Promotion Offers of stalls\n");
+		
+		System.out.println("1. Manage ingredients");
+		System.out.println("2. Manage Promotion Offers of stalls\n");
 	}
 	
 	//Food no submenu cos its just viewing
 	
 	private void ingredientsubmenu() {
-		System.out.println("1. Add request order");
-		System.out.println("2. View all request orders");
-		System.out.println("3. Remove request order");
+		System.out.println("1. Add request ingredient");
+		System.out.println("2. View all request ingredient");
+		System.out.println("3. Remove request ingredient");
 		System.out.println("4. Exit to main menu\n");
 	}
 	
@@ -119,21 +116,7 @@ public class mainOperator {
 		System.out.println("4. Exit to main menu\n");
 	}
 	
-	private void doviewfood() {
-		//retrieving and printing food stuff from food arraylist
-		
-		System.out.printf("%-5s %-15s %-12s %-12s %-12s %s%n",
-				"ID", "Name", "Price", "Promotion", "Promo Price",
-				"Promo Date");
-		
-		for (Food f : foodList) {
-			System.out.printf("%-5s %-15s %-12s %-12s %-12s %s%n", 
-					f.getId(), f.getName(), f.getPrice(), 
-					f.isPromotion() ? "Yes" : "No", 
-							f.getPromotionPrice(), f.getPromotionDate());
-		}
-		
-	}
+
 	
 	
 
