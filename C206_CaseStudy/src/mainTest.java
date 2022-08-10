@@ -486,6 +486,7 @@ public class mainTest {
 		// Test if expected output display is the same as the displayed output
 		allFood = mainCanteen.retrieveAllFoodMenu(foodList);
 		
+		
 		assertEquals("Check ViewAllFoodMenu", testOutput, allFood);
 	}
 	
