@@ -359,19 +359,19 @@ public class mainTest {
 	@Test
 	public void addPromotion_1() {
 
-		assertEquals(5, operator.getPromotions().size());
+		assertEquals(3, operator.getPromotions().size());
 		assertTrue(operator.addPromotion(promotion1));
-		assertEquals(6, operator.getPromotions().size());
+		assertEquals(4, operator.getPromotions().size());
 		
 	}
 	
 	@Test
 	public void addPromotion_2() {
 
-		assertEquals(5, operator.getPromotions().size());
+		assertEquals(3, operator.getPromotions().size());
 		assertTrue(operator.addPromotion(promotion1));
 		assertTrue(operator.addPromotion(promotion2));
-		assertEquals(7, operator.getPromotions().size());
+		assertEquals(5, operator.getPromotions().size());
 		
 	}
 	
@@ -421,7 +421,7 @@ public class mainTest {
 	public void viewPromotion_1() {
 		
 		assertTrue(operator.addPromotion(promotion1));
-		assertEquals("ID    Name       orderStatus\n"
+		assertEquals("ID    promoPrice promoDate\n"
 				+ "1     $6.00       Mon Jun 08 00:00:00 SGT 2020\n"
 				+ "2     $6.00       Thu Oct 08 00:00:00 SGT 2020\n"
 				+ "3     $6.00       Tue Dec 08 00:00:00 SGT 2020\n"
@@ -432,9 +432,9 @@ public class mainTest {
 	@Test
 	public void viewPromotion_2() {
 		
-		assertTrue(operator.addIngredient(order1));
-		assertTrue(operator.addIngredient(order2));
-		assertEquals("ID    Name       orderStatus\n"
+		assertTrue(operator.addPromotion(promotion1));
+		assertTrue(operator.addPromotion(promotion2));
+		assertEquals("ID    promoPrice promoDate\n"
 				+ "1     $6.00       Mon Jun 08 00:00:00 SGT 2020\n"
 				+ "2     $6.00       Thu Oct 08 00:00:00 SGT 2020\n"
 				+ "3     $6.00       Tue Dec 08 00:00:00 SGT 2020\n"

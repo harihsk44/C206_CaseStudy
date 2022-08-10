@@ -196,7 +196,8 @@ public class mainOperator {
 	
 	public String viewAllPromotions() {
 		
-		String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
+		//String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
+		String output = "ID    promoPrice promoDate\n";
 		for (Promotion p : promotionlist) {
 			Date promodate = p.getPromotionDate();
 			String promodatestr = promodate.toString();
