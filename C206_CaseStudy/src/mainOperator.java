@@ -48,7 +48,7 @@ public class mainOperator {
 		Date promoDate3 = null;
 		//just initialising as null
 		try {
-			promoDate3 = new SimpleDateFormat("dd/MM/yyyy").parse("8/6/2020");
+			promoDate3= new SimpleDateFormat("dd/MM/yyyy").parse("8/6/2020");
 			promoDate1=new SimpleDateFormat("dd/MM/yyyy").parse("8/10/2020");
 			promoDate2=new SimpleDateFormat("dd/MM/yyyy").parse("8/12/2020");
 		} catch (ParseException e) {
@@ -117,7 +117,7 @@ public class mainOperator {
 	}
 	
 
-public String viewAllIngredients() {
+	public String viewAllIngredients() {
 		
 		String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
 		for (IngredientOrder io : ingredientList) {
@@ -192,54 +192,80 @@ public String viewAllIngredients() {
 		}
 	}
 	
+	//Promotion
+	
+	public String viewAllPromotions() {
+		
+		String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
+		for (Promotion p : promotionlist) {
+			Date promodate = p.getPromotionDate();
+			String promodatestr = promodate.toString();
+			output += String.format("%-5d $%-10.2f %-10s\n", p.getId(), p.getPromotionPrice(), promodatestr);
+		}
+		return output;
+	}
+	
+	public boolean addPromotion(Promotion thepromotion) {
+		
+		if (thepromotion == null) {
+			return false;
+		} else {
+			this.promotionlist.add(thepromotion);
+			return true;
+		}
+		
+	}
+	
+	public boolean removePromotion(int id) {
+		
+		int i = 0;
+		boolean removed = false;
+		while (i < promotionlist.size()) {
+			if (promotionlist.get(i).getId() == id) {
+				promotionlist.remove(i);
+				removed = true;
+			}
+			i++;
+		}
+		return removed;
+		
+	}
+	
+	public ArrayList<Promotion> getPromotions(){
+		
+		return promotionlist;
+		
+	}
+	
+	
+	
+	
 	//Promotion(int id, int promotionPrice, Date promotionDate)
 	private void dopromotion() throws ParseException {
 		int promotionchoice = Helper.readInt("Enter choice > ");
 		while (promotionchoice != 4) {
 			if (promotionchoice == 1) {
-				
-				try {
-					int promotionid = Helper.readInt("Enter promotionid > ");
-					double promotionprice = Helper.readDouble("Enter promotionprice > ");
-					String promotiondate = Helper.readString("Enter promotionDate (dd/MM/yyyy:) > ");
-					Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotiondate);
-					promotionlist.add(new Promotion(promotionid, promotionprice, promoDate));
-					System.out.println("Promotion added!");
-					
-				}catch (Exception e) {
-					System.out.println(e);
-				}
+				int id = Helper.readInt("Enter PromotionID > ");
+				double promotionPrice = Helper.readDouble("Enter promotionPrice > ");
+				String promotionDate = Helper.readString("Enter Date(dd/MM/yyyy) > ");
+				Date promoDate=new SimpleDateFormat("dd/MM/yyyy").parse(promotionDate);
+				addPromotion(new Promotion(id, promotionPrice, promoDate));
+				System.out.println("Promotion added!");
 				
 				promotionsubmenu();
 				promotionchoice = Helper.readInt("Enter choice > ");
 				
 				
 			}else if (promotionchoice == 2) {
-				String output = String.format("%-5s %-10s %-10s\n", "ID", "promoPrice", "promoDate");
-				for (Promotion p : promotionlist) {
-					Date promodate = p.getPromotionDate();
-					String promodatestr = promodate.toString();
-					//SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
-					//String promodatestr = format1.format(promodate);
-					output += String.format("%-5d $%-10.2f %-10s\n", p.getId(), p.getPromotionPrice(), promodatestr);
-				}
-				System.out.println(output);
+				System.out.println(viewAllPromotions());
+				
 				promotionsubmenu();
 				promotionchoice = Helper.readInt("Enter choice > ");
 				
 			}else if (promotionchoice == 3) {
 				int promotionID = Helper.readInt("Enter promotionID > ");
-				int i = 0;
-				boolean removed = false;
-				while (i < promotionlist.size()) {
-					if(promotionlist.get(i).getId() == promotionID) {
-						promotionlist.remove(i);
-						removed = true;
-					}
-					i++;
-				}
 				
-				if (removed) {
+				if (removePromotion(promotionID)) {
 					System.out.println("Promotion removed");
 				}else {
 					System.out.println("Promotion not found");
