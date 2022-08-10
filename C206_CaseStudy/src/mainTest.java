@@ -228,14 +228,20 @@ public class mainTest {
 	private mainOperator operator;
 	private IngredientOrder order1;
 	private IngredientOrder order2;
+	private Promotion promotion1;
+	private Promotion promotion2;
 	
 	@Before
-	public void initOperator() {
+	public void initOperator() throws ParseException {
 		
 		operator = new mainOperator();
 		operator.listadd();
 		order1 = new IngredientOrder(9, "Tea", true);
 		order2 = new IngredientOrder(10, "Coffee", false);
+		Date promoDate1=new SimpleDateFormat("dd/MM/yyyy").parse("08/12/2020");
+		Date promoDate2=new SimpleDateFormat("dd/MM/yyyy").parse("08/12/2020");
+		promotion1 = new Promotion(4, 6.00, promoDate1);
+		promotion2 = new Promotion(5, 6.00, promoDate2);
 		
 	}
 	
@@ -340,6 +346,104 @@ public class mainTest {
 				+ "10    Coffee     false     \n", operator.viewAllIngredients());
 	
 	}
+	
+	//Promotion
+	@Test
+	public void addPromotionNull() {
+		
+		assertFalse(operator.addPromotion(null));
+		assertEquals(5, operator.getOrders().size());
+		
+	}
+	
+	@Test
+	public void addPromotion_1() {
+
+		assertEquals(5, operator.getPromotions().size());
+		assertTrue(operator.addPromotion(promotion1));
+		assertEquals(6, operator.getPromotions().size());
+		
+	}
+	
+	@Test
+	public void addPromotion_2() {
+
+		assertEquals(5, operator.getPromotions().size());
+		assertTrue(operator.addPromotion(promotion1));
+		assertTrue(operator.addPromotion(promotion2));
+		assertEquals(7, operator.getPromotions().size());
+		
+	}
+	
+	@Test
+	public void removePromotionInvalid() {
+		
+		assertFalse(operator.removePromotion(-1));
+		assertFalse(operator.removePromotion(0));
+		
+	}
+
+	@Test
+	public void removePromotion_1() {
+		
+		assertTrue(operator.addPromotion(promotion1));
+		assertTrue(operator.removePromotion(1));
+		assertFalse(operator.removePromotion(1));
+		
+	}
+
+	@Test
+	public void removePromotion_2() {
+		
+		assertTrue(operator.addPromotion(promotion1));
+		assertTrue(operator.addPromotion(promotion2));
+		
+		assertTrue(operator.removePromotion(1));
+		assertFalse(operator.removePromotion(1));
+		
+		assertTrue(operator.removePromotion(2));
+		assertFalse(operator.removePromotion(1));
+		assertFalse(operator.removePromotion(2));
+		
+	}
+	
+	@Test
+	public void viewPromotion_Default() {
+		
+		assertEquals("ID    promoPrice promoDate\n"
+				+ "1     $6.00       Mon Jun 08 00:00:00 SGT 2020\n"
+				+ "2     $6.00       Thu Oct 08 00:00:00 SGT 2020\n"
+				+ "3     $6.00       Tue Dec 08 00:00:00 SGT 2020\n", operator.viewAllPromotions());
+		
+	}
+	
+	@Test
+	public void viewPromotion_1() {
+		
+		assertTrue(operator.addPromotion(promotion1));
+		assertEquals("ID    Name       orderStatus\n"
+				+ "1     $6.00       Mon Jun 08 00:00:00 SGT 2020\n"
+				+ "2     $6.00       Thu Oct 08 00:00:00 SGT 2020\n"
+				+ "3     $6.00       Tue Dec 08 00:00:00 SGT 2020\n"
+				+ "4     $6.00       Tue Dec 08 00:00:00 SGT 2020\n", operator.viewAllPromotions());
+		
+	}
+	
+	@Test
+	public void viewPromotion_2() {
+		
+		assertTrue(operator.addIngredient(order1));
+		assertTrue(operator.addIngredient(order2));
+		assertEquals("ID    Name       orderStatus\n"
+				+ "1     $6.00       Mon Jun 08 00:00:00 SGT 2020\n"
+				+ "2     $6.00       Thu Oct 08 00:00:00 SGT 2020\n"
+				+ "3     $6.00       Tue Dec 08 00:00:00 SGT 2020\n"
+				+ "4     $6.00       Tue Dec 08 00:00:00 SGT 2020\n"
+				+ "5     $6.00       Tue Dec 08 00:00:00 SGT 2020\n", operator.viewAllPromotions());
+	
+	}
+	
+	
 	// @After
 	public void destroyOperator() {
 		operator = null;
