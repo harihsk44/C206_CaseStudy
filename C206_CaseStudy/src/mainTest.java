@@ -157,7 +157,7 @@ public class mainTest {
 
 		testOutput = String.format("%-10d %-30s %-10d %-10s %-20d %-20s\n",001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, 1, 8));
 		testOutput += String.format("%-10d %-30s %-10d %-10s %-20d %-20s\n",002, "Bak Kut Teh", 9, true, 6, LocalDate.of(2020, 1, 8));
-	
+		
 		assertEquals("Check that ViewAllFoodlist", testOutput, allFood);
 		
 	}
@@ -470,9 +470,6 @@ public class mainTest {
 		// Test if expected output display is the same as the displayed output
 		allStalls = mainCanteen.retrieveAllStalls(stallList);
 		
-		testOutput = String.format("%-7s %-20s %-20s %-20s %-20s\n", 001, "Japanese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Lee");
-		testOutput += String.format("%-7s %-20s %-20s %-20s %-20s\n", 002, "Chinese Food Stall", LocalDate.of(2020, Month.JANUARY, 8),  LocalTime.of(10,43,12), "Mr.Wee");
-		
 		assertEquals("Check ViewAllStalls", testOutput, allStalls);
 	}
 	
@@ -488,9 +485,6 @@ public class mainTest {
 		// Test if expected output display is the same as the displayed output
 		allFood = mainCanteen.retrieveAllFoodMenu(foodList);
 		
-		testOutput = String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", 001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8));
-		testOutput += String.format("%-7s %-20s %-5s %-10s %-25s %-20s\n", 002, "Bak Kut Teh", 9, false, 6, LocalDate.of(2020, Month.JANUARY, 8));
-		
 		assertEquals("Check ViewAllFoodMenu", testOutput, allFood);
 	}
 	
@@ -505,9 +499,6 @@ public class mainTest {
 		
 		// Test if expected output display is the same as the displayed output
 		allOrders = mainCanteen.retrieveAllOrders(orderList);
-		
-		testOutput = String.format("%-7s %-20s %-25s %-10s\n", 001, "Japanese Food Stall", "Salmon Sushi", 9, true);
-		testOutput += String.format("%-7s %-20s %-25s %-10s\n", 002, "Malay Food Stall", "Nasi Lemak", 9, true);
 		
 		assertEquals("Check ViewAllOrders", testOutput, allOrders);
 	}
