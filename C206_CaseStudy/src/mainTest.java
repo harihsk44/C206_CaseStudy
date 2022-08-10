@@ -155,8 +155,8 @@ public class mainTest {
 		//test if the expected output string same as the list of foods retrieved from the mainAdmin
 		allFood= mainAdmin.retrieveAllFoodItem(foodList);
 
-		testOutput = String.format("%-10d %-30s %-10d %-10s %-20d %-20s\n",001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, 1, 8));
-		testOutput += String.format("%-10d %-30s %-10d %-10s %-20d %-20s\n",002, "Bak Kut Teh", 9, true, 6, LocalDate.of(2020, 1, 8));
+		testOutput = String.format("%-10s %-30s %-10s %-10s %-20s\n",001, "Salmon Sushi", 9, false, 6, LocalDate.of(2020, 1, 8));
+		testOutput += String.format("%-10s %-30s %-10s %-10s %-20s\n",002, "Bak Kut Teh", 9, true, 6, LocalDate.of(2020, 1, 8));
 		
 		assertEquals("Check that ViewAllFoodlist", testOutput, allFood);
 		
