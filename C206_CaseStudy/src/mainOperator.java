@@ -117,55 +117,73 @@ public class mainOperator {
 	}
 	
 
+public String viewAllIngredients() {
+		
+		String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
+		for (IngredientOrder io : ingredientList) {
+			output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(),
+					io.isOrderStatus());
+		}
+		return output;
+		
+	}
 	
+	public boolean addIngredient(IngredientOrder order) {
+		
+		if (order == null) {
+			return false;
+		} else {
+			this.ingredientList.add(order);
+			return true;
+		}
+		
+	}
+	
+	public boolean removeIngredient(int id) {
+		
+		int i = 0;
+		boolean removed = false;
+		while (i < ingredientList.size()) {
+			if (ingredientList.get(i).getId() == id) {
+				ingredientList.remove(i);
+				removed = true;
+			}
+			i++;
+		}
+		return removed;
+		
+	}
+	
+	public ArrayList<IngredientOrder> getOrders(){
+		
+		return ingredientList;
+		
+	}
 	
 
 	//int id, String ingredientName, boolean orderStatus
 	private void doingredient() {
 		int ingredientchoice = Helper.readInt("Enter choice > ");
 		while (ingredientchoice != 4) {
-			
-			 if (ingredientchoice == 1) {
-				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
-				for (IngredientOrder io : ingredientList) {
-					output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(), io.isOrderStatus());
-				}
-				System.out.println(output);
+
+			if (ingredientchoice == 1) {
+				System.out.println(viewAllIngredients());
 				ingredientsubmenu();
 				ingredientchoice = Helper.readInt("Enter choice > ");
-			 }
-		else if (ingredientchoice == 2) {
+			} else if (ingredientchoice == 2) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
 				String ingredientName = Helper.readString("Enter ingredientName > ");
 				boolean orderStatus = Helper.readBoolean("Enter orderstatus (true/false) > ");
-				ingredientList.add(new IngredientOrder(ingredientID, ingredientName, orderStatus));
+				addIngredient(new IngredientOrder(ingredientID, ingredientName, orderStatus));
 				System.out.println("Ingredient request order added!");
 				ingredientsubmenu();
 				ingredientchoice = Helper.readInt("Enter choice > ");
-				
-			}else if (ingredientchoice == 2) {
-				String output = String.format("%-5s %-10s %-10s\n", "ID", "Name", "orderStatus");
-				for (IngredientOrder io : ingredientList) {
-					output += String.format("%-5d %-10s %-10b\n", io.getId(), io.getIngredientName(), io.isOrderStatus());
-				}
-				System.out.println(output);
-				ingredientsubmenu();
-				ingredientchoice = Helper.readInt("Enter choice > ");
-				
-			}else if (ingredientchoice == 3) {
+
+			} else if (ingredientchoice == 3) {
 				int ingredientID = Helper.readInt("Enter ingredientorderID > ");
-				int i = 0;
-				boolean removed = false;
-				while(i < ingredientList.size()) {
-					if(ingredientList.get(i).getId() == ingredientID) {
-						ingredientList.remove(i);
-						removed = true;
-					}
-					i++;
-				}
-				if (removed) {
+				if (removeIngredient(ingredientID)) {
 					System.out.println("IngredientOrder removed");
-				}else {
+				} else {
 					System.out.println("IngredientOrder not found");
 				}
 				ingredientsubmenu();

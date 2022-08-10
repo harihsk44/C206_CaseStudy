@@ -225,8 +225,125 @@ public class mainTest {
 	// =============================================================== OPERATOR TEST =================================================================
 	
 	// @Test
-	// @After
+	private mainOperator operator;
+	private IngredientOrder order1;
+	private IngredientOrder order2;
 	
+	@Before
+	public void initOperator() {
+		
+		operator = new mainOperator();
+		operator.listadd();
+		order1 = new IngredientOrder(9, "Tea", true);
+		order2 = new IngredientOrder(10, "Coffee", false);
+		
+	}
+	
+	@Test
+	public void addIngredientNull() {
+		
+		assertFalse(operator.addIngredient(null));
+		assertEquals(5, operator.getOrders().size());
+		
+	}
+	
+	@Test
+	public void addIngredient_1() {
+
+		assertEquals(5, operator.getOrders().size());
+		assertTrue(operator.addIngredient(order1));
+		assertEquals(6, operator.getOrders().size());
+		
+	}
+	
+	@Test
+	public void addIngredient_2() {
+
+		assertEquals(5, operator.getOrders().size());
+		assertTrue(operator.addIngredient(order1));
+		assertTrue(operator.addIngredient(order2));
+		assertEquals(7, operator.getOrders().size());
+		
+	}
+
+	@Test
+	public void removeIngredientInvalid() {
+		
+		assertFalse(operator.removeIngredient(-1));
+		assertFalse(operator.removeIngredient(0));
+		
+	}
+
+	@Test
+	public void removeIngredient_1() {
+		
+		assertTrue(operator.addIngredient(order1));
+		
+		assertTrue(operator.removeIngredient(1));
+		assertFalse(operator.removeIngredient(1));
+		
+	}
+
+	@Test
+	public void removeIngredient_2() {
+		
+		assertTrue(operator.addIngredient(order1));
+		assertTrue(operator.addIngredient(order2));
+		
+		assertTrue(operator.removeIngredient(1));
+		assertFalse(operator.removeIngredient(1));
+		
+		assertTrue(operator.removeIngredient(2));
+		assertFalse(operator.removeIngredient(1));
+		assertFalse(operator.removeIngredient(2));
+		
+	}
+	
+	@Test
+	public void viewIngredient_Default() {
+		
+		assertEquals("ID    Name       orderStatus\n"
+				+ "1     Rice       false     \n"
+				+ "2     Fish       false     \n"
+				+ "3     Peanut     false     \n"
+				+ "4     Flour      false     \n"
+				+ "5     Prawn      false     \n", operator.viewAllIngredients());
+		
+	}
+	
+	@Test
+	public void viewIngredient_1() {
+		
+		assertTrue(operator.addIngredient(order1));
+		assertEquals("ID    Name       orderStatus\n"
+				+ "1     Rice       false     \n"
+				+ "2     Fish       false     \n"
+				+ "3     Peanut     false     \n"
+				+ "4     Flour      false     \n"
+				+ "5     Prawn      false     \n"
+				+ "9     Tea        true      \n", operator.viewAllIngredients());
+		
+	}
+	
+	@Test
+	public void viewIngredient_2() {
+		
+		assertTrue(operator.addIngredient(order1));
+		assertTrue(operator.addIngredient(order2));
+		assertEquals("ID    Name       orderStatus\n"
+				+ "1     Rice       false     \n"
+				+ "2     Fish       false     \n"
+				+ "3     Peanut     false     \n"
+				+ "4     Flour      false     \n"
+				+ "5     Prawn      false     \n"
+				+ "9     Tea        true      \n"
+				+ "10    Coffee     false     \n", operator.viewAllIngredients());
+	
+	}
+	// @After
+	public void destroyOperator() {
+		operator = null;
+	}
 	
 	
 	
