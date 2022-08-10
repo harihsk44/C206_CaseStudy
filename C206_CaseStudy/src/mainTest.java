@@ -245,7 +245,8 @@ public class mainTest {
 		
 	}
 	
-	@Test
+	//ingredient
+	@Test 
 	public void addIngredientNull() {
 		
 		assertFalse(operator.addIngredient(null));
